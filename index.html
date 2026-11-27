@@ -8,6 +8,7 @@
 <link rel="manifest" href="./manifest.webmanifest"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="theme-color" content="#65bce9"><link rel="apple-touch-icon" href="./icon.svg">
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 * {
   box-sizing: border-box;
   touch-action: none;
@@ -153,6 +154,27 @@ small {
 #selectedSkin{font-size:17px;font-weight:800;color:#263e48;text-align:center;}
 #skins .card{padding:clamp(12px,2.5vh,24px);}
 @media(max-height:650px){#skins{gap:4px;}#skins h1{font-size:28px;}#skins .skinPreview svg{height:64px;}#skins .skinPreview{min-height:75px;}#skins .card{padding:8px;}#skins button{font-size:14px;margin:2px 0;padding:8px;}}
+
+
+html,body{font-family:'Press Start 2P',monospace;background:#80c5ce;}
+h1{font-family:inherit;font-size:clamp(22px,7vw,38px);line-height:1.5;color:#ffc52b;-webkit-text-stroke:1px #654027;paint-order:stroke fill;text-shadow:3px 3px #57372d,-2px -2px #fff6c8,2px -2px #fff6c8,-2px 2px #fff6c8;letter-spacing:-1px;}
+.card{border-radius:0;background:#dcd894;border:4px solid #59423b;box-shadow:inset 0 0 0 4px #f6edb0,inset 0 0 0 8px #c6a45b,0 5px #59423b;padding:22px;color:#79542c;}
+button{font-family:inherit;font-size:clamp(10px,3vw,15px);line-height:1.5;border-radius:0;border:3px solid #633b23;box-shadow:inset 0 0 0 3px #fff5cb,0 4px #633b23;background:#d96118!important;color:#fff8df;text-shadow:2px 2px #9c3c14;padding:13px 8px;}
+button:active{transform:translateY(3px);box-shadow:inset 0 0 0 3px #fff5cb;}
+small{font-size:9px;line-height:1.7;} h2{font-size:14px;line-height:1.6;}
+.version{font-size:9px;letter-spacing:0;color:#604b35;}
+#hud{font-size:10px;text-shadow:2px 2px #332c26;}#score,#resultScore,#resultBest{color:white;-webkit-text-stroke:1px #27221d;text-shadow:3px 3px #27221d;}
+#gameover .card{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:center;text-align:right;}
+#gameover h2{grid-column:1/-1;text-align:center;margin:0;}
+#gameover .medal{text-align:center;font-size:11px;line-height:2;}
+#medalIcon{display:block;margin:12px auto;width:58px;height:58px;border:4px solid #8b8571;background:#e9e6d7;box-shadow:inset 0 0 0 5px #fff,0 3px #665c4c;border-radius:50%;font-size:26px;line-height:50px;color:#a69b76;}
+#gameover .scorePanel{font-size:11px;line-height:1.8;color:#a77b38;}
+#resultScore{font-size:30px;margin:8px 0 12px;}#resultBest{font-size:25px;margin:8px 0;}
+#newRecord{background:#d92720;color:white;font-size:9px;padding:3px;display:inline-block;}
+#gameover .actions{display:flex;gap:12px;width:100%;max-width:340px;margin-top:22px;}
+#selectedSkin{font-size:11px;}#readyText{font-size:14px;}
+#skinPlayers button,#skinChoices button{background:revert-layer!important;}#skinPlayers button,#skinChoices button{background-color:#d96118!important;}
+#settings button.activeChoice,#skinPlayers button.activeChoice{background:#648e32!important;}
 </style>
 </head>
 
@@ -160,7 +182,7 @@ small {
 
 <canvas id="game"></canvas>
 
-<div id="menu" class="screen"><h1>FLAPPY BIRD</h1><div class="card"><button class="green" onclick="showPlayers()">Play</button><button onclick="showSkins()">Skins</button><button class="gray" onclick="showSettings()">Settings</button><button class="gray" onclick="showLeaderboard()">Resultattavle</button></div><div class="version">VERSION 5.7</div></div><div id="players" class="screen hidden">
+<div id="menu" class="screen"><h1>FLAPPY BIRD</h1><div class="card"><button class="green" onclick="showPlayers()">Play</button><button onclick="showSkins()">Skins</button><button class="gray" onclick="showSettings()">Settings</button><button class="gray" onclick="showLeaderboard()">Resultattavle</button></div><div class="version">VERSION 5.8</div></div><div id="players" class="screen hidden">
 
   <h1>FLAPPY BIRD</h1>
 
@@ -182,7 +204,7 @@ small {
 
   </div>
 
-  <div class="version">VERSION 5.7</div>
+  <div class="version">VERSION 5.8</div>
 
 </div>
 
@@ -210,29 +232,9 @@ small {
 </div>
 
 <div id="gameover" class="screen hidden">
-
-  <h1>GAME OVER</h1>
-
-  <div class="card">
-
-    <h2 id="resultPlayer"></h2>
-
-    POENG
-
-    <div id="resultScore">0</div>
-
-    <p id="resultBest"></p>
-
-    <button class="green" onclick="prepareGame()">
-      Spill igjen
-    </button>
-
-    <button class="gray" onclick="showMenu()">
-      Hovedmeny
-    </button>
-
-  </div>
-
+<h1>GAME OVER</h1>
+<div class="card"><h2 id="resultPlayer"></h2><div class="medal">MEDAL<span id="medalIcon">★</span></div><div class="scorePanel">SCORE<div id="resultScore">0</div><span id="newRecord" class="hidden">NEW</span> BEST<div id="resultBest">0</div></div></div>
+<div class="actions"><button onclick="prepareGame()">RETRY</button><button onclick="showMenu()">MENU</button></div>
 </div>
 
 <div id="leaderboard" class="screen hidden">
@@ -389,10 +391,10 @@ try{const p=JSON.parse(localStorage.getItem("flappySettingsV5"));if(p){prefs.fps
 function savePrefs(){try{localStorage.setItem("flappySettingsV5",JSON.stringify(prefs));}catch(e){}}
 function showPlayers(){state="players";for(const n of ["Ivan","Alva"])$(n.toLowerCase()+"Best").textContent="Rekord: "+profiles[n].best;showScreen("players");}
 let skinPlayer="Ivan";
-function makeButton(parent,label,action,color){const b=document.createElement("button");b.textContent=label;b.style.width="47%";b.style.margin="3px";b.style.padding="10px";b.style.background=color;b.onclick=action;parent.appendChild(b);}
+function makeButton(parent,label,action,color){const b=document.createElement("button");b.textContent=label;b.style.width="47%";b.style.margin="3px";b.style.padding="10px";b.style.background=color;b.classList.toggle("activeChoice",color==="#3478e5");b.onclick=action;parent.appendChild(b);}
 function showSkins(){state="skins";showScreen("skins");const chosen=prefs.skins[skinPlayer],colors=skins[chosen];$("previewBody").setAttribute("fill",colors[0]);$("previewWing").setAttribute("fill",colors[1]);$("selectedSkin").textContent=skinPlayer+" – "+chosen;const p=$("skinPlayers"),s=$("skinChoices");p.replaceChildren();s.replaceChildren();for(const n of ["Ivan","Alva"])makeButton(p,n,()=>{skinPlayer=n;showSkins();},n===skinPlayer?"#3478e5":"#344b5b");for(const [n,c] of Object.entries(skins)){makeButton(s,n+(prefs.skins[skinPlayer]===n?" ✓":""),()=>{prefs.skins[skinPlayer]=n;savePrefs();showSkins();},"#344b5b");s.lastChild.style.border="4px solid "+c[0];}}
-async function checkUpdate(){const b=$("updateButton"),s=$("updateStatus");b.disabled=true;s.textContent="Sjekker etter oppdatering…";try{const u=new URL("./index.html",location.href);u.searchParams.set("_update",Date.now());const r=await fetch(u,{cache:"no-store"});if(!r.ok)throw Error("HTTP "+r.status);const html=await r.text();const v=html.match(/VERSION (\d+\.\d+)/)?.[1];if(!v)throw Error("Version missing");const current="5.7";const parts=v.split(".").map(Number),cur=current.split(".").map(Number);if(parts[0]>cur[0]||(parts[0]===cur[0]&&parts[1]>cur[1])){s.textContent="Ny versjon "+v+" funnet. Oppdaterer…";const next=new URL(location.href);next.searchParams.set("_update",Date.now());location.replace(next.href);}else{s.textContent="Du har nyeste publiserte versjon ("+current+").";}}catch(e){s.textContent="Kunne ikke sjekke. Prøv igjen senere.";}finally{b.disabled=false;}}
-function showSettings(){$("soundToggle").textContent="Hoppelyd: "+(prefs.sound?"PÅ":"AV");state="settings";showScreen("settings");$("musicToggle").textContent="Musikk: "+(prefs.music?"PÅ":"AV");for(const f of [60,120])$("fps"+f).style.background=prefs.fps===f?"#46a65c":"#344b5b";}
+async function checkUpdate(){const b=$("updateButton"),s=$("updateStatus");b.disabled=true;s.textContent="Sjekker etter oppdatering…";try{const u=new URL("./index.html",location.href);u.searchParams.set("_update",Date.now());const r=await fetch(u,{cache:"no-store"});if(!r.ok)throw Error("HTTP "+r.status);const html=await r.text();const v=html.match(/VERSION (\d+\.\d+)/)?.[1];if(!v)throw Error("Version missing");const current="5.8";const parts=v.split(".").map(Number),cur=current.split(".").map(Number);if(parts[0]>cur[0]||(parts[0]===cur[0]&&parts[1]>cur[1])){s.textContent="Ny versjon "+v+" funnet. Oppdaterer…";const next=new URL(location.href);next.searchParams.set("_update",Date.now());location.replace(next.href);}else{s.textContent="Du har nyeste publiserte versjon ("+current+").";}}catch(e){s.textContent="Kunne ikke sjekke. Prøv igjen senere.";}finally{b.disabled=false;}}
+function showSettings(){$("soundToggle").textContent="Hoppelyd: "+(prefs.sound?"PÅ":"AV");state="settings";showScreen("settings");$("musicToggle").textContent="Musikk: "+(prefs.music?"PÅ":"AV");for(const f of [60,120])$("fps"+f).classList.toggle("activeChoice",prefs.fps===f);}
 function setFPS(f){prefs.fps=f;savePrefs();showSettings();}
 let audio=null,musicTimer=null,musicStep=0;
 let effectsAudio=null;
@@ -536,9 +538,9 @@ function gameOver() {
 
   $("resultScore").textContent = score;
 
-  $("resultBest").textContent = newRecord
-    ? "NY REKORD: " + score
-    : "Rekord: " + profile.best;
+  $("resultBest").textContent = profile.best;
+  $("newRecord").classList.toggle("hidden", !newRecord);
+  $("medalIcon").style.background = score>=40?"#f7cc55":score>=20?"#e9e6d7":score>=10?"#c98d55":"#dcd894";
 
   showScreen("gameover");
 }
