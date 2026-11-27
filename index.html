@@ -177,14 +177,14 @@ small{font-size:9px;line-height:1.7;} h2{font-size:14px;line-height:1.6;}
 #settings button.activeChoice,#skinPlayers button.activeChoice{background:#648e32!important;}
 #names input{display:block;width:100%;margin:12px 0 20px;padding:12px;font:16px monospace;border:3px solid #59423b;background:#fff6ce;touch-action:auto;user-select:text;-webkit-user-select:text;}#names label{font-size:11px;}#settings .card{padding:14px;}#settings button{padding:9px 5px;margin:4px 0;}@media(max-height:700px){#settings h1{margin:5px;}#settings button{padding:6px 4px;font-size:10px;}}#ready{justify-content:flex-start;padding-top:calc(env(safe-area-inset-top) + 17vh);pointer-events:none;}#readyTitle{margin:0;animation:readyPulse 1.2s ease-in-out infinite;}#playerTitle{margin-top:12px;color:#fff;text-shadow:2px 2px #59423b;}#readyText{margin-top:clamp(35px,15vh,130px);display:flex;flex-direction:column;align-items:center;gap:8px;animation:readyPulse 1.2s ease-in-out infinite;}#readyText svg{animation:demoFlap .8s ease-in-out infinite;} .tapArrow{font-size:30px;color:#59423b;}.tapLabel{background:#d92720;border:3px solid #fff;padding:8px;color:white;}.readyTop{position:absolute;top:calc(env(safe-area-inset-top) + 24px);font-size:32px;color:white;text-shadow:3px 3px #222;}@keyframes readyPulse{50%{opacity:.65;}}@keyframes demoFlap{50%{transform:translateY(-14px) rotate(-12deg);}}#pauseButton{position:fixed;top:calc(env(safe-area-inset-top) + 12px);left:12px;width:44px;height:44px;padding:0;margin:0;z-index:5;font-size:22px;}#hud{padding-left:48px;}#pauseMenu{background:#0003;}#pauseMenu .card{max-width:300px;}/* Keep moving scenery away from the system status-bar backdrop. */
 body::after{content:"";position:fixed;top:0;left:0;right:0;height:env(safe-area-inset-top,0px);background:#80c5ce;pointer-events:none;z-index:20;}
-</style>
+#menu{padding-top:calc(24px + env(safe-area-inset-top) + 5vh);}#settings{overflow-y:auto;touch-action:pan-y;}#settings .card{flex-shrink:0;}#settings h1{margin:8px 0;}#settings button{padding:7px 5px;margin:3px 0;}#settings .optionRow{display:flex;gap:6px;}body.night::after{background:#192b49;}canvas.pixel{image-rendering:pixelated;}@media(max-height:700px){#settings{justify-content:flex-start;}}</style>
 </head>
 
 <body>
 
 <canvas id="game"></canvas>
 
-<div id="menu" class="screen"><h1>FLAPPY BIRD</h1><div class="card"><button class="green" onclick="showPlayers()">Play</button><button onclick="showSkins()">Skins</button><button class="gray" onclick="showSettings()">Settings</button><button class="gray" onclick="showLeaderboard()">Resultattavle</button></div><div class="version">VERSION 6.2</div></div><div id="players" class="screen hidden">
+<div id="menu" class="screen"><h1>FLAPPY BIRD</h1><div class="card"><button class="green" onclick="showPlayers()">Play</button><button onclick="showSkins()">Skins</button><button class="gray" onclick="showSettings()">Settings</button><button class="gray" onclick="showLeaderboard()">Resultattavle</button></div><div class="version">VERSION 6.3</div></div><div id="players" class="screen hidden">
 
   <h1>FLAPPY BIRD</h1>
 
@@ -206,11 +206,11 @@ body::after{content:"";position:fixed;top:0;left:0;right:0;height:env(safe-area-
 
   </div>
 
-  <div class="version">VERSION 6.2</div>
+  <div class="version">VERSION 6.3</div>
 
 </div>
 
-<div id="skins" class="screen hidden"><h1>SKINS</h1><div class="skinPreview"><svg viewBox="0 0 100 80" role="img" aria-label="Valgt fugl"><ellipse id="previewBody" cx="45" cy="40" rx="30" ry="22.5"/><ellipse id="previewWing" cx="30" cy="46" rx="15" ry="9"/><circle cx="60" cy="31" r="13.5" fill="white"/><circle cx="64.5" cy="31" r="5.25" fill="#20252A"/><ellipse cx="73.5" cy="46" rx="12" ry="6" fill="#FF8B31"/></svg><div id="selectedSkin"></div></div><div class="card"><div id="skinPlayers"></div><div id="skinChoices"></div><button class="gray" onclick="showMenu()">Tilbake</button></div></div><div id="settings" class="screen hidden"><h1>SETTINGS</h1><div class="card"><button id="musicToggle" onclick="toggleMusic()"></button><button id="soundToggle" onclick="toggleSound()"></button><button id="fps60" onclick="setFPS(60)">60 FPS</button><button id="fps120" onclick="setFPS(120)">120 FPS</button><button onclick="showNames()">Endre spillernavn</button><button id="updateButton" onclick="checkUpdate()">Søk etter oppdatering</button><small id="updateStatus" role="status" aria-live="polite"></small><small>Faktisk FPS avhenger av iOS og nettleseren.</small><button class="gray" onclick="showMenu()">Tilbake</button></div></div><div id="names" class="screen hidden"><h1>SPILLERNAVN</h1><div class="card"><label for="name1">Spiller 1</label><input id="name1" maxlength="18" autocomplete="off"><label for="name2">Spiller 2</label><input id="name2" maxlength="18" autocomplete="off"><button onclick="saveNames()">Lagre</button><button onclick="showSettings()">Tilbake</button></div></div><div id="ready" class="screen hidden"><div class="readyTop">0</div><h1 id="readyTitle">GET READY</h1><small id="playerTitle"></small><div id="readyText"><svg viewBox="0 0 100 80" width="76" height="60" aria-hidden="true"><g fill="#eee" stroke="#59423b" stroke-width="4"><path d="M15 25H25V15H65V22H80V48H65V60H25V50H15Z"/><path d="M50 15H70V35H50Z" fill="white"/><path d="M70 38H90V49H70Z" fill="#d96118"/><path d="M15 35H40V48H15Z"/></g><path d="M60 20V30" stroke="#333" stroke-width="5"/></svg><div class="tapArrow">↑</div><div class="tapLabel">TAP</div></div></div>
+<div id="skins" class="screen hidden"><h1>SKINS</h1><div class="skinPreview"><svg viewBox="0 0 100 80" role="img" aria-label="Valgt fugl"><ellipse id="previewBody" cx="45" cy="40" rx="30" ry="22.5"/><ellipse id="previewWing" cx="30" cy="46" rx="15" ry="9"/><circle cx="60" cy="31" r="13.5" fill="white"/><circle cx="64.5" cy="31" r="5.25" fill="#20252A"/><ellipse cx="73.5" cy="46" rx="12" ry="6" fill="#FF8B31"/></svg><div id="selectedSkin"></div></div><div class="card"><div id="skinPlayers"></div><div id="skinChoices"></div><button class="gray" onclick="showMenu()">Tilbake</button></div></div><div id="settings" class="screen hidden"><h1>SETTINGS</h1><div class="card"><button id="musicToggle" onclick="toggleMusic()"></button><button id="soundToggle" onclick="toggleSound()"></button><button id="fps60" onclick="setFPS(60)">60 FPS</button><button id="fps120" onclick="setFPS(120)">120 FPS</button><div class="optionRow"><button id="day" onclick="setVisual('theme','day')">Dag</button><button id="night" onclick="setVisual('theme','night')">Natt</button></div><div class="optionRow"><button id="smooth" onclick="setVisual('graphics','smooth')">Moderne</button><button id="pixel" onclick="setVisual('graphics','pixel')">Retro</button></div><button onclick="showNames()">Endre spillernavn</button><button id="updateButton" onclick="checkUpdate()">Søk etter oppdatering</button><small id="updateStatus" role="status" aria-live="polite"></small><small>Faktisk FPS avhenger av iOS og nettleseren.</small><button class="gray" onclick="showMenu()">Tilbake</button></div></div><div id="names" class="screen hidden"><h1>SPILLERNAVN</h1><div class="card"><label for="name1">Spiller 1</label><input id="name1" maxlength="18" autocomplete="off"><label for="name2">Spiller 2</label><input id="name2" maxlength="18" autocomplete="off"><button onclick="saveNames()">Lagre</button><button onclick="showSettings()">Tilbake</button></div></div><div id="ready" class="screen hidden"><div class="readyTop">0</div><h1 id="readyTitle">GET READY</h1><small id="playerTitle"></small><div id="readyText"><svg viewBox="0 0 100 80" width="76" height="60" aria-hidden="true"><g fill="#eee" stroke="#59423b" stroke-width="4"><path d="M15 25H25V15H65V22H80V48H65V60H25V50H15Z"/><path d="M50 15H70V35H50Z" fill="white"/><path d="M70 38H90V49H70Z" fill="#d96118"/><path d="M15 35H40V48H15Z"/></g><path d="M60 20V30" stroke="#333" stroke-width="5"/></svg><div class="tapArrow">↑</div><div class="tapLabel">TAP</div></div></div>
 <div id="pauseMenu" class="screen hidden"><h1>PAUSED</h1><div class="card"><button onclick="resumeGame()">Fortsett</button><button onclick="showMenu()">Hovedmeny</button></div></div>
 <button id="pauseButton" class="hidden" aria-label="Pause" onclick="pauseGame()">Ⅱ</button>
 <div id="hud" class="hidden">
@@ -307,25 +307,25 @@ function saveProfiles() {
   } catch(e) {}
 }
 
-function resize() {
+function resize(force=false) {
 
   const rect = canvas.getBoundingClientRect();
 
   if (!rect.width || !rect.height) return;
 
-  if (rect.width === W && rect.height === H) return;
+  if (!force && rect.width === W && rect.height === H) return;
 
   const oldH = H;
 
   W = rect.width;
   H = rect.height;
 
-  DPR = Math.min(window.devicePixelRatio || 1, 1.5);
+  DPR = prefs.graphics==="pixel"?Math.min(1,288/W):Math.min(window.devicePixelRatio || 1, 1.5);
 
   canvas.width = Math.round(W * DPR);
   canvas.height = Math.round(H * DPR);
 
-  ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+  ctx.setTransform(DPR, 0, 0, DPR, 0, 0);ctx.imageSmoothingEnabled=prefs.graphics!=="pixel";
 
   groundHeight = Math.min(65, H * 0.12);
 
@@ -385,8 +385,8 @@ function showMenu() {
 }
 
 const skins={Classic:["#FFD744","#FFF0B0"],Pink:["#F4A2D1","#FFD3EB"],Ocean:["#369BFF","#BCE8FF"],Emerald:["#36C98A","#B8F5CF"],Shadow:["#394150","#A0A9BB"],Ruby:["#E94B4B","#FFB5A8"]};
-let prefs={fps:120,music:false,sound:true,skins:{Ivan:"Classic",Alva:"Pink"}};
-try{const p=JSON.parse(localStorage.getItem("flappySettingsV5"));if(p){prefs.fps=p.fps===60?60:120;prefs.music=p.music===true;prefs.sound=p.sound!==false;for(const n of ["Ivan","Alva"])if(p.skins&&skins[p.skins[n]])prefs.skins[n]=p.skins[n];}}catch(e){}
+let prefs={theme:"day",graphics:"smooth",fps:120,music:false,sound:true,skins:{Ivan:"Classic",Alva:"Pink"}};
+try{const p=JSON.parse(localStorage.getItem("flappySettingsV5"));if(p){prefs.theme=p.theme==="night"?"night":"day";prefs.graphics=p.graphics==="pixel"?"pixel":"smooth";prefs.fps=p.fps===60?60:120;prefs.music=p.music===true;prefs.sound=p.sound!==false;for(const n of ["Ivan","Alva"])if(p.skins&&skins[p.skins[n]])prefs.skins[n]=p.skins[n];}}catch(e){}
 function savePrefs(){try{localStorage.setItem("flappySettingsV5",JSON.stringify(prefs));}catch(e){}}
 function showPlayers(){state="players";$("ivanLabel").textContent=names.Ivan;$("alvaLabel").textContent=names.Alva;for(const n of ["Ivan","Alva"])$(n.toLowerCase()+"Best").textContent="Rekord: "+profiles[n].best;showScreen("players");}
 let names={Ivan:"Ivan",Alva:"Alva"};try{const n=JSON.parse(localStorage.getItem("flappyNames"));for(const k of ["Ivan","Alva"])if(typeof n?.[k]==="string"&&n[k].trim())names[k]=n[k].trim().slice(0,18);}catch(e){}
@@ -395,8 +395,10 @@ function saveNames(){names.Ivan=$("name1").value.trim()||"Ivan";names.Alva=$("na
 let skinPlayer="Ivan";
 function makeButton(parent,label,action,color){const b=document.createElement("button");b.textContent=label;b.style.width="47%";b.style.margin="3px";b.style.padding="10px";b.style.background=color;b.classList.toggle("activeChoice",color==="#3478e5");b.onclick=action;parent.appendChild(b);}
 function showSkins(){state="skins";showScreen("skins");const chosen=prefs.skins[skinPlayer],colors=skins[chosen];$("previewBody").setAttribute("fill",colors[0]);$("previewWing").setAttribute("fill",colors[1]);$("selectedSkin").textContent=names[skinPlayer]+" – "+chosen;const p=$("skinPlayers"),s=$("skinChoices");p.replaceChildren();s.replaceChildren();for(const n of ["Ivan","Alva"])makeButton(p,names[n],()=>{skinPlayer=n;showSkins();},n===skinPlayer?"#3478e5":"#344b5b");for(const [n,c] of Object.entries(skins)){makeButton(s,n+(prefs.skins[skinPlayer]===n?" ✓":""),()=>{prefs.skins[skinPlayer]=n;savePrefs();showSkins();},"#344b5b");s.lastChild.style.border="4px solid "+c[0];}}
-async function checkUpdate(){const b=$("updateButton"),s=$("updateStatus");b.disabled=true;s.textContent="Sjekker etter oppdatering…";try{const u=new URL("./index.html",location.href);u.searchParams.set("_update",Date.now());const r=await fetch(u,{cache:"no-store"});if(!r.ok)throw Error("HTTP "+r.status);const html=await r.text();const v=html.match(/VERSION (\d+\.\d+)/)?.[1];if(!v)throw Error("Version missing");const current="6.2";const parts=v.split(".").map(Number),cur=current.split(".").map(Number);if(parts[0]>cur[0]||(parts[0]===cur[0]&&parts[1]>cur[1])){s.textContent="Ny versjon "+v+" funnet. Oppdaterer…";const next=new URL(location.href);next.searchParams.set("_update",Date.now());location.replace(next.href);}else{s.textContent="Du har nyeste publiserte versjon ("+current+").";}}catch(e){s.textContent="Kunne ikke sjekke. Prøv igjen senere.";}finally{b.disabled=false;}}
-function showSettings(){$("soundToggle").textContent="Hoppelyd: "+(prefs.sound?"PÅ":"AV");state="settings";showScreen("settings");$("musicToggle").textContent="Musikk: "+(prefs.music?"PÅ":"AV");for(const f of [60,120])$("fps"+f).classList.toggle("activeChoice",prefs.fps===f);}
+async function checkUpdate(){const b=$("updateButton"),s=$("updateStatus");b.disabled=true;s.textContent="Sjekker etter oppdatering…";try{const u=new URL("./index.html",location.href);u.searchParams.set("_update",Date.now());const r=await fetch(u,{cache:"no-store"});if(!r.ok)throw Error("HTTP "+r.status);const html=await r.text();const v=html.match(/VERSION (\d+\.\d+)/)?.[1];if(!v)throw Error("Version missing");const current="6.3";const parts=v.split(".").map(Number),cur=current.split(".").map(Number);if(parts[0]>cur[0]||(parts[0]===cur[0]&&parts[1]>cur[1])){s.textContent="Ny versjon "+v+" funnet. Oppdaterer…";const next=new URL(location.href);next.searchParams.set("_update",Date.now());location.replace(next.href);}else{s.textContent="Du har nyeste publiserte versjon ("+current+").";}}catch(e){s.textContent="Kunne ikke sjekke. Prøv igjen senere.";}finally{b.disabled=false;}}
+function setVisual(k,v){prefs[k]=v;savePrefs();applyVisual();showSettings();}
+function applyVisual(){document.body.classList.toggle("night",prefs.theme==="night");canvas.classList.toggle("pixel",prefs.graphics==="pixel");resize(true);cacheBackground();dirty=true;}
+function showSettings(){for(const k of ["day","night","smooth","pixel"])$(k).classList.toggle("activeChoice",k===prefs.theme||k===prefs.graphics);$("soundToggle").textContent="Hoppelyd: "+(prefs.sound?"PÅ":"AV");state="settings";showScreen("settings");$("musicToggle").textContent="Musikk: "+(prefs.music?"PÅ":"AV");for(const f of [60,120])$("fps"+f).classList.toggle("activeChoice",prefs.fps===f);}
 function setFPS(f){prefs.fps=f;savePrefs();showSettings();}
 let audio=null,musicTimer=null,musicStep=0;
 let effectsAudio=null;
@@ -679,6 +681,7 @@ function ellipse(x, y, rx, ry, color) {
 }
 
 function pipeSection(x, y, w, h) {
+if(prefs.graphics==="pixel"){if(h<=0)return;rectangle(x,y,w,h,"#493d35");rectangle(x+3,y+3,w-6,Math.max(0,h-6),"#80bf28");rectangle(x+7,y+3,7,Math.max(0,h-6),"#d1ef70");rectangle(x+w-12,y+3,7,Math.max(0,h-6),"#43821e");return;}
 
   if (h <= 0) return;
 
@@ -786,6 +789,7 @@ function drawBird(time) {
     )
   );
 
+  if(prefs.graphics==="pixel"){const c=skins[prefs.skins[player]];const rows=["....KKKKK.......","..KKBBBBBKK.....",".KBBBBBBWWKK....","KBBBBBBBWWPWK...","KBBBBBBBWWPWK...","KLLLLBBBWWWWK...","KLLLLLBBBBKKKKKK",".KLLLBBBBKRRRRRK","..KBBBBBBKKKKKKK","...KKBBBBKRRRRK.",".....KKKKKKKKK.."];const pal={K:"#49362e",B:c[0],L:c[1],W:"#fff",P:"#222",R:"#e35b36"};for(let y=0;y<rows.length;y++)for(let x=0;x<rows[y].length;x++){const col=pal[rows[y][x]];if(col)rectangle(x*3-24,y*3-16,3,3,col);}ctx.restore();return;}
   ellipse(
     0, 0, 20, 15,
     skins[prefs.skins[player]][0]
@@ -816,14 +820,16 @@ function drawBird(time) {
 }
 
 function drawBackground() {
+ const night=prefs.theme==="night";
+ if(prefs.graphics==="pixel"){rectangle(0,0,W,H,night?"#192b49":"#80c5ce");const y=H-groundHeight; if(night){for(let i=0;i<32;i++)rectangle((i*73+19)%W,(i*47+13)%(H*.62),2,2,"#e7e8bd");}for(let i=-1;i<W/42+1;i++){let x=i*42;rectangle(x,y-120-(i%3+3)%3*12,48,125,night?"#354d65":"#e3f5c8");}for(let i=0;i<W/23;i++){let x=i*23,bh=32+(i*17)%60;rectangle(x,y-22-bh,20,bh,night?"#283d56":"#a5d7c9");for(let j=0;j<bh-8;j+=12)rectangle(x+5,y-18-bh+j,4,5,night?"#d5b86a":"#d7edc6");}for(let i=-1;i<W/28+1;i++){rectangle(i*28,y-23-(i%2)*8,32,32,night?"#294d45":"#83d77c");}return;}
 
-  rectangle(0, 0, W, H, "#80c5ce");
+  rectangle(0, 0, W, H, night?"#192b49":"#80c5ce");
 
   ellipse(
     W * 0.8,
     H * 0.12,
     35, 35,
-    "#FFF1B2"
+    night?"#e7e8d9":"#FFF1B2"
   );
 
   for (let i = 0; i < 4; i++) {
@@ -834,17 +840,17 @@ function drawBackground() {
 
     ellipse(
       x - 25, y,
-      24, 20, "#FFFFFFAA"
+      24, 20, night?"#63738b88":"#FFFFFFAA"
     );
 
     ellipse(
       x, y - 10,
-      30, 26, "#FFFFFFAA"
+      30, 26, night?"#63738b88":"#FFFFFFAA"
     );
 
     ellipse(
       x + 25, y,
-      24, 20, "#FFFFFFAA"
+      24, 20, night?"#63738b88":"#FFFFFFAA"
     );
 
   }
@@ -976,7 +982,7 @@ if (window.visualViewport) {
 
 }
 
-handleResize();
+applyVisual();
 
 showMenu();
 
