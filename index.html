@@ -184,7 +184,7 @@ body::after{content:"";position:fixed;top:0;left:0;right:0;height:env(safe-area-
 
 <canvas id="game"></canvas>
 
-<div id="menu" class="screen"><h1>FLAPPY BIRD</h1><div class="card"><button class="green" onclick="showPlayers()">Play</button><button onclick="showSkins()">Skins</button><button onclick="showMedals()">Medals</button><button class="gray" onclick="showSettings()">Settings</button></div><div class="version">VERSION 7.7</div><button id="newsButton" onclick="showScreen('changelog')">Hva er nytt? · 7.7</button></div><div id="changelog" class="screen hidden"><h1>UPDATE LOG</h1><div class="card"><div class="newsList"><h2>V7.7</h2><p>Fast tilbakeknapp i medaljemenyen, resultattavle flyttet til Settings og separat coin-lyd.</p><h2>V7.6</h2><p>Ny oppdateringslogg under hovedmenyen.</p><h2>V7.5</h2><p>Admin-modus med PIN, joystick og fri flyging. Øvingspoeng og coins lagres ikke.</p><h2>Tidligere oppdateringer</h2><p>40 medaljer fordelt på poeng og coins, medaljemeny og indikatorer.</p><p>Skins som kan kjøpes med coins, separate spillerprofiler og lagring av fremgang.</p><p>Dag/natt, pikselgrafikk, pausemeny, lydeffekter og valg mellom 60 og 120 FPS.</p></div><button onclick="showMenu()">Tilbake</button></div></div><div id="players" class="screen hidden">
+<div id="menu" class="screen"><h1>FLAPPY BIRD</h1><div class="card"><button class="green" onclick="showPlayers()">Play</button><button onclick="showSkins()">Skins</button><button onclick="showMedals()">Medals</button><button class="gray" onclick="showSettings()">Settings</button></div><div class="version">VERSION 7.8</div><button id="newsButton" onclick="showScreen('changelog')">Hva er nytt? · 7.8</button></div><div id="changelog" class="screen hidden"><h1>UPDATE LOG</h1><div class="card"><div class="newsList"><h2>V7.8</h2><p>Cloud Save med konto og Firebase-synkronisering.</p><h2>V7.7</h2><p>Fast tilbakeknapp i medaljemenyen, resultattavle flyttet til Settings og separat coin-lyd.</p><h2>V7.6</h2><p>Ny oppdateringslogg under hovedmenyen.</p><h2>V7.5</h2><p>Admin-modus med PIN, joystick og fri flyging. Øvingspoeng og coins lagres ikke.</p><h2>Tidligere oppdateringer</h2><p>40 medaljer fordelt på poeng og coins, medaljemeny og indikatorer.</p><p>Skins som kan kjøpes med coins, separate spillerprofiler og lagring av fremgang.</p><p>Dag/natt, pikselgrafikk, pausemeny, lydeffekter og valg mellom 60 og 120 FPS.</p></div><button onclick="showMenu()">Tilbake</button></div></div><div id="players" class="screen hidden">
 
   <h1>FLAPPY BIRD</h1>
 
@@ -206,11 +206,11 @@ body::after{content:"";position:fixed;top:0;left:0;right:0;height:env(safe-area-
 
   </div>
 
-  <div class="version">VERSION 7.7</div>
+  <div class="version">VERSION 7.8</div>
 
 </div>
 
-<div id="loading" class="screen"><img src="./icon-180.png" alt="" width="110" height="110"><h1>FLAPPY BIRD</h1><div class="loadTrack"><i></i></div><small>LOADING...</small></div><div id="medals" class="screen hidden"><h1>MEDALS</h1><div class="card"><div id="medalPlayers"></div><h2 id="medalCount"></h2><div id="medalList"></div><button id="medalBack" onclick="showMenu()">Tilbake</button></div></div><div id="skins" class="screen hidden"><h1>SKINS</h1><div class="skinPreview"><svg viewBox="0 0 100 80" role="img" aria-label="Valgt fugl"><ellipse id="previewBody" cx="45" cy="40" rx="30" ry="22.5"/><ellipse id="previewWing" cx="30" cy="46" rx="15" ry="9"/><circle cx="60" cy="31" r="13.5" fill="white"/><circle cx="64.5" cy="31" r="5.25" fill="#20252A"/><ellipse cx="73.5" cy="46" rx="12" ry="6" fill="#FF8B31"/></svg><div id="selectedSkin"></div></div><div class="card"><div id="skinPlayers"></div><div id="skinBalance"></div><div id="skinChoices"></div><small id="skinMessage" role="status"></small><button class="gray" onclick="showMenu()">Tilbake</button></div></div><div id="settings" class="screen hidden"><h1>SETTINGS</h1><div class="card"><button id="musicToggle" onclick="toggleMusic()"></button><button id="soundToggle" onclick="toggleSound()"></button><button id="coinSoundToggle" onclick="toggleCoinSound()"></button><button id="fps60" onclick="setFPS(60)">60 FPS</button><button id="fps120" onclick="setFPS(120)">120 FPS</button><div class="optionRow"><button id="day" onclick="setVisual('theme','day')">Dag</button><button id="night" onclick="setVisual('theme','night')">Natt</button></div><div class="optionRow"><button id="smooth" onclick="setVisual('graphics','smooth')">Moderne</button><button id="pixel" onclick="setVisual('graphics','pixel')">Retro</button></div><button onclick="showNames()">Endre spillernavn</button><button onclick="showLeaderboard()">Resultattavle</button><button id="updateButton" onclick="checkUpdate()">Søk etter oppdatering</button><small id="updateStatus" role="status" aria-live="polite"></small><small>Faktisk FPS avhenger av iOS og nettleseren.</small><button class="gray" onclick="showMenu()">Tilbake</button></div></div><div id="names" class="screen hidden"><h1>SPILLERNAVN</h1><div class="card"><label for="name1">Spiller 1</label><input id="name1" maxlength="18" autocomplete="off"><label for="name2">Spiller 2</label><input id="name2" maxlength="18" autocomplete="off"><button onclick="saveNames()">Lagre</button><button onclick="showSettings()">Tilbake</button></div></div><div id="ready" class="screen hidden"><div class="readyTop">0</div><h1 id="readyTitle">GET READY</h1><small id="playerTitle"></small><div id="readyText"><svg viewBox="0 0 100 80" width="76" height="60" aria-hidden="true"><g fill="#eee" stroke="#59423b" stroke-width="4"><path d="M15 25H25V15H65V22H80V48H65V60H25V50H15Z"/><path d="M50 15H70V35H50Z" fill="white"/><path d="M70 38H90V49H70Z" fill="#d96118"/><path d="M15 35H40V48H15Z"/></g><path d="M60 20V30" stroke="#333" stroke-width="5"/></svg><div class="tapArrow">↑</div><div class="tapLabel">TAP</div></div></div>
+<div id="loading" class="screen"><img src="./icon-180.png" alt="" width="110" height="110"><h1>FLAPPY BIRD</h1><div class="loadTrack"><i></i></div><small>LOADING...</small></div><div id="medals" class="screen hidden"><h1>MEDALS</h1><div class="card"><div id="medalPlayers"></div><h2 id="medalCount"></h2><div id="medalList"></div><button id="medalBack" onclick="showMenu()">Tilbake</button></div></div><div id="skins" class="screen hidden"><h1>SKINS</h1><div class="skinPreview"><svg viewBox="0 0 100 80" role="img" aria-label="Valgt fugl"><ellipse id="previewBody" cx="45" cy="40" rx="30" ry="22.5"/><ellipse id="previewWing" cx="30" cy="46" rx="15" ry="9"/><circle cx="60" cy="31" r="13.5" fill="white"/><circle cx="64.5" cy="31" r="5.25" fill="#20252A"/><ellipse cx="73.5" cy="46" rx="12" ry="6" fill="#FF8B31"/></svg><div id="selectedSkin"></div></div><div class="card"><div id="skinPlayers"></div><div id="skinBalance"></div><div id="skinChoices"></div><small id="skinMessage" role="status"></small><button class="gray" onclick="showMenu()">Tilbake</button></div></div><div id="settings" class="screen hidden"><h1>SETTINGS</h1><div class="card"><button id="musicToggle" onclick="toggleMusic()"></button><button id="soundToggle" onclick="toggleSound()"></button><button id="coinSoundToggle" onclick="toggleCoinSound()"></button><button id="fps60" onclick="setFPS(60)">60 FPS</button><button id="fps120" onclick="setFPS(120)">120 FPS</button><div class="optionRow"><button id="day" onclick="setVisual('theme','day')">Dag</button><button id="night" onclick="setVisual('theme','night')">Natt</button></div><div class="optionRow"><button id="smooth" onclick="setVisual('graphics','smooth')">Moderne</button><button id="pixel" onclick="setVisual('graphics','pixel')">Retro</button></div><button onclick="showCloud()">Cloud Save</button><button onclick="showNames()">Endre spillernavn</button><button onclick="showLeaderboard()">Resultattavle</button><button id="updateButton" onclick="checkUpdate()">Søk etter oppdatering</button><small id="updateStatus" role="status" aria-live="polite"></small><small>Faktisk FPS avhenger av iOS og nettleseren.</small><button class="gray" onclick="showMenu()">Tilbake</button></div></div><div id="cloud" class="screen hidden"><h1>CLOUD SAVE</h1><div class="card"><input id="cloudEmail" type="email" placeholder="E-post" autocomplete="email"><input id="cloudPass" type="password" placeholder="Passord" autocomplete="current-password"><button onclick="cloudLogin(false)">Logg inn</button><button onclick="cloudLogin(true)">Opprett konto</button><button onclick="cloudSync()">Synkroniser nå</button><button onclick="cloudLogout()">Logg ut</button><small id="cloudStatus" role="status"></small><button onclick="showSettings()">Tilbake</button></div></div><div id="names" class="screen hidden"><h1>SPILLERNAVN</h1><div class="card"><label for="name1">Spiller 1</label><input id="name1" maxlength="18" autocomplete="off"><label for="name2">Spiller 2</label><input id="name2" maxlength="18" autocomplete="off"><button onclick="saveNames()">Lagre</button><button onclick="showSettings()">Tilbake</button></div></div><div id="ready" class="screen hidden"><div class="readyTop">0</div><h1 id="readyTitle">GET READY</h1><small id="playerTitle"></small><div id="readyText"><svg viewBox="0 0 100 80" width="76" height="60" aria-hidden="true"><g fill="#eee" stroke="#59423b" stroke-width="4"><path d="M15 25H25V15H65V22H80V48H65V60H25V50H15Z"/><path d="M50 15H70V35H50Z" fill="white"/><path d="M70 38H90V49H70Z" fill="#d96118"/><path d="M15 35H40V48H15Z"/></g><path d="M60 20V30" stroke="#333" stroke-width="5"/></svg><div class="tapArrow">↑</div><div class="tapLabel">TAP</div></div></div>
 <div id="pauseMenu" class="screen hidden"><h1>PAUSED</h1><div class="card"><button onclick="resumeGame()">Fortsett</button><button onclick="openAdmin()">Admin</button><button onclick="showMenu()">Hovedmeny</button></div></div>
 <div id="adminMenu" class="screen hidden"><h1>ADMIN</h1><div class="card"><label for="adminCode">PIN</label><input id="adminCode" type="password" inputmode="numeric" maxlength="4" autocomplete="off"><button onclick="enableAdmin()">Aktiver</button><small id="adminMessage"></small><button onclick="showScreen('pauseMenu')">Tilbake</button></div></div><div id="joystick" class="hidden" aria-label="Joystick"><div id="joyKnob"></div></div><div id="adminFlag" class="hidden">ADMIN</div><button id="pauseButton" class="hidden" aria-label="Pause" onclick="pauseGame()">Ⅱ</button>
 <div id="hud" class="hidden">
@@ -305,6 +305,7 @@ function saveProfiles() {
       JSON.stringify(profiles)
     );
     try{localStorage.setItem("flappyProfilesBackup",JSON.stringify(profiles));}catch(e){}
+    if(typeof cloudSchedule==="function" && cloudUser && !cloudBusy)cloudSchedule();
     return true;
   } catch(e) { return false; }
 }
@@ -347,7 +348,7 @@ function resize(force=false) {
 function showScreen(id) {
 
   const screens = [
-    "menu", "changelog", "players", "skins", "settings", "names", "medals",
+    "menu", "changelog", "players", "skins", "settings", "names", "medals", "cloud",
     "ready", "pauseMenu", "adminMenu",
     "gameover",
     "leaderboard",
@@ -447,7 +448,7 @@ function makeButton(parent,label,action,color){const b=document.createElement("b
 let previewSkin=null;
 function showSkins(message=""){state="skins";showScreen("skins");const profile=profiles[skinPlayer],chosen=previewSkin||prefs.skins[skinPlayer],colors=skins[chosen];$("previewBody").setAttribute("fill",colors[0]);$("previewWing").setAttribute("fill",colors[1]);$("selectedSkin").textContent=names[skinPlayer]+" – "+chosen;$("skinBalance").textContent="★ "+profile.coins+" COINS";$("skinMessage").textContent=message;const p=$("skinPlayers"),s=$("skinChoices");p.replaceChildren();s.replaceChildren();for(const n of ["Ivan","Alva"])makeButton(p,names[n],()=>{skinPlayer=n;previewSkin=null;showSkins();},n===skinPlayer?"#3478e5":"#344b5b");for(const [n,c] of Object.entries(skins)){const price=skinPrices[n]||0,owned=!price||profile.owned.includes(n);makeButton(s,n+(prefs.skins[skinPlayer]===n?" ✓":owned?"":" · ★ "+price),()=>{previewSkin=n;if(!owned){if(profile.coins<price){showSkins("Mangler "+(price-profile.coins)+" coins");return;}if(!confirm("Kjøp "+n+" for "+price+" coins?")){showSkins();return;}}const before={...profile,owned:[...profile.owned]};if(!owned){profile.coins-=price;profile.owned.push(n);}profile.equipped=n;if(!saveProfiles()){Object.assign(profile,before);showSkins("Kunne ikke lagre. Ingen coins trukket.");return;}prefs.skins[skinPlayer]=n;savePrefs();showSkins(owned?"Valgt":"Kjøpt og lagret");},"#344b5b");s.lastChild.style.border="4px solid "+c[0];}}
 
-async function checkUpdate(){const b=$("updateButton"),s=$("updateStatus");b.disabled=true;s.textContent="Sjekker etter oppdatering…";try{const u=new URL("./index.html",location.href);u.searchParams.set("_update",Date.now());const r=await fetch(u,{cache:"no-store"});if(!r.ok)throw Error("HTTP "+r.status);const html=await r.text();const v=html.match(/VERSION (\d+\.\d+)/)?.[1];if(!v)throw Error("Version missing");const current="7.7";const parts=v.split(".").map(Number),cur=current.split(".").map(Number);if(parts[0]>cur[0]||(parts[0]===cur[0]&&parts[1]>cur[1])){s.textContent="Ny versjon "+v+" funnet. Oppdaterer…";const next=new URL(location.href);next.searchParams.set("_update",Date.now());location.replace(next.href);}else{s.textContent="Du har nyeste publiserte versjon ("+current+").";}}catch(e){s.textContent="Kunne ikke sjekke. Prøv igjen senere.";}finally{b.disabled=false;}}
+async function checkUpdate(){const b=$("updateButton"),s=$("updateStatus");b.disabled=true;s.textContent="Sjekker etter oppdatering…";try{const u=new URL("./index.html",location.href);u.searchParams.set("_update",Date.now());const r=await fetch(u,{cache:"no-store"});if(!r.ok)throw Error("HTTP "+r.status);const html=await r.text();const v=html.match(/VERSION (\d+\.\d+)/)?.[1];if(!v)throw Error("Version missing");const current="7.8";const parts=v.split(".").map(Number),cur=current.split(".").map(Number);if(parts[0]>cur[0]||(parts[0]===cur[0]&&parts[1]>cur[1])){s.textContent="Ny versjon "+v+" funnet. Oppdaterer…";const next=new URL(location.href);next.searchParams.set("_update",Date.now());location.replace(next.href);}else{s.textContent="Du har nyeste publiserte versjon ("+current+").";}}catch(e){s.textContent="Kunne ikke sjekke. Prøv igjen senere.";}finally{b.disabled=false;}}
 function setVisual(k,v){prefs[k]=v;savePrefs();applyVisual();showSettings();}
 function applyVisual(){const sky=prefs.theme==="night"?"#192b49":"#80c5ce";document.documentElement.style.setProperty("--sky",sky);document.documentElement.style.backgroundColor=sky;document.body.style.backgroundColor=sky;document.querySelector('meta[name="theme-color"]').content=sky;document.body.classList.toggle("night",prefs.theme==="night");canvas.classList.toggle("pixel",prefs.graphics==="pixel");resize(true);cacheBackground();dirty=true;}
 function showSettings(){for(const k of ["day","night","smooth","pixel"])$(k).classList.toggle("activeChoice",k===prefs.theme||k===prefs.graphics);$("soundToggle").textContent="Hoppelyd: "+(prefs.sound?"PÅ":"AV");$("coinSoundToggle").textContent="Coin-lyd: "+(prefs.coinSound?"PÅ":"AV");state="settings";showScreen("settings");$("musicToggle").textContent="Musikk: "+(prefs.music?"PÅ":"AV");for(const f of [60,120])$("fps"+f).classList.toggle("activeChoice",prefs.fps===f);}
@@ -1042,6 +1043,64 @@ if (window.visualViewport) {
 
 window.addEventListener("pagehide",()=>{saveProfiles();savePrefs();});
 document.addEventListener("visibilitychange",()=>{if(document.hidden){saveProfiles();savePrefs();}});
+
+let cloudUser=null, cloudSDK=null, cloudBusy=false, cloudTimer=null, cloudBase=null, cloudReady=false;
+const cloudCopy=x=>JSON.parse(JSON.stringify(x));
+function cloudSnapshot(){return cloudCopy({profiles,names,skins:prefs.skins});}
+function cloudStatus(s){$("cloudStatus").textContent=s;}
+function showCloud(){state="cloud";showScreen("cloud");cloudStatus(cloudUser?(cloudReady?"Innlogget: "+cloudUser.email:"Ikke synkronisert – prøv igjen"):"Logg inn med samme konto på begge telefoner.");}
+async function cloudInit(){
+ if(cloudSDK)return cloudSDK;
+ const root="https://www.gstatic.com/firebasejs/13.4.0/";
+ const [a,b,c]=await Promise.all([import(root+"firebase-app.js"),import(root+"firebase-auth.js"),import(root+"firebase-firestore.js")]);
+ const app=a.initializeApp({apiKey:"AIzaSyBYhGD82VT_DXzNtdbmWZc2R6594NldkNo",authDomain:"flappy-ivan.firebaseapp.com",projectId:"flappy-ivan",storageBucket:"flappy-ivan.firebasestorage.app",messagingSenderId:"177197521161",appId:"1:177197521161:web:c631fa68771223aaad5bd8"});
+ const auth=b.getAuth(app),db=c.getFirestore(app);
+ await b.setPersistence(auth,b.browserLocalPersistence);
+ cloudSDK={b,c,auth,db};return cloudSDK;
+}
+function cloudApply(data){
+ for(const n of ["Ivan","Alva"]){const p=data.profiles[n];profiles[n]=p;const choice=p.equipped||data.skins?.[n];if(skins[choice]&&(!skinPrices[choice]||p.owned.includes(choice)))prefs.skins[n]=choice;unlockMedals(p);}
+ if(data.names)for(const n of ["Ivan","Alva"])if(typeof data.names[n]==="string")names[n]=data.names[n].slice(0,18);
+ localStorage.setItem("flappyNames",JSON.stringify(names));savePrefs();saveProfiles();
+}
+function cloudMerge(remote,local,base){
+ if(!remote?.profiles)return local;
+ const out=cloudCopy(remote);
+ for(const n of ["Ivan","Alva"]){
+ const a=remote.profiles[n],l=local.profiles[n],b=base?.profiles?.[n];
+ const owned=[...new Set([...(a.owned||[]),...(l.owned||[])])];
+ const lifetime=b?Math.max(0,(a.lifetimeCoins||0)+Math.max(0,(l.lifetimeCoins||0)-(b.lifetimeCoins||0))):Math.max(a.lifetimeCoins||0,l.lifetimeCoins||0,a.coins||0,l.coins||0);
+ const cost=owned.reduce((s,k)=>s+(skinPrices[k]||0),0);
+ const added=owned.filter(k=>!(a.owned||[]).includes(k)).reduce((s,k)=>s+(skinPrices[k]||0),0);
+ const coins=b?Math.max(0,(a.coins||0)+Math.max(0,(l.lifetimeCoins||0)-(b.lifetimeCoins||0))-added):Math.max(0,Math.max((a.coins||0)+(a.owned||[]).reduce((s,k)=>s+(skinPrices[k]||0),0),(l.coins||0)+(l.owned||[]).reduce((s,k)=>s+(skinPrices[k]||0),0))-cost);
+ out.profiles[n]={best:Math.max(a.best||0,l.best||0),games:b?(a.games||0)+Math.max(0,(l.games||0)-(b.games||0)):Math.max(a.games||0,l.games||0),coins,lifetimeCoins:lifetime,owned,medals:[...new Set([...(a.medals||[]),...(l.medals||[])])],equipped:(b&&l.equipped!==b.equipped?l.equipped:a.equipped||l.equipped)||null};
+ }
+ out.names=base&&JSON.stringify(local.names)!==JSON.stringify(base.names)?local.names:remote.names||local.names;
+ out.skins=remote.skins||local.skins;return out;
+}
+async function cloudSync(){
+ if(!cloudUser||cloudBusy||!cloudSDK)return;
+ if(state==="playing"||state==="ready"||state==="paused"){cloudSchedule();return;}
+ cloudBusy=true;cloudStatus("Synkroniserer…");
+ try{
+ const {c,db}=cloudSDK,uid=cloudUser.uid,ref=c.doc(db,"users",uid),local=cloudSnapshot();
+ const base=cloudBase||JSON.parse(localStorage.getItem("flappyCloudBase:"+uid)||"null");
+ const merged=await c.runTransaction(db,async tx=>{const d=await tx.get(ref);const next=cloudMerge(d.exists()?d.data().save:null,local,base);if(!d.exists()||JSON.stringify(d.data().save)!==JSON.stringify(next))tx.set(ref,{save:next,updatedAt:c.serverTimestamp()});return next;});
+ const current=cloudSnapshot();const changed=JSON.stringify(current)!==JSON.stringify(local);
+ cloudBase=merged;localStorage.setItem("flappyCloudBase:"+uid,JSON.stringify(merged));
+ cloudApply(changed?cloudMerge(merged,current,local):merged);cloudReady=true;cloudStatus("Lagret i skyen: "+cloudUser.email);if(changed)cloudSchedule();
+ }catch(e){cloudReady=false;cloudStatus("Ikke synkronisert: "+(e.code||e.message));}finally{cloudBusy=false;}
+}
+function cloudSchedule(){if(!cloudUser)return;clearTimeout(cloudTimer);cloudTimer=setTimeout(cloudSync,1800);}
+async function cloudLogin(create){
+ if(cloudBusy)return;cloudBusy=true;cloudStatus("Kobler til…");
+ try{const {b,auth}=await cloudInit();const email=$("cloudEmail").value.trim(),pass=$("cloudPass").value;const result=await (create?b.createUserWithEmailAndPassword(auth,email,pass):b.signInWithEmailAndPassword(auth,email,pass));cloudUser=result.user;cloudBase=null;cloudReady=false;$("cloudPass").value="";}catch(e){cloudStatus("Innlogging feilet: "+(e.code||e.message));}finally{cloudBusy=false;}if(cloudUser)await cloudSync();
+}
+async function cloudLogout(){if(cloudBusy)return;try{if(cloudUser)await cloudSync();if(!cloudReady)return;await cloudSDK.b.signOut(cloudSDK.auth);cloudUser=null;cloudBase=null;cloudReady=false;clearTimeout(cloudTimer);cloudStatus("Logget ut. Lokal lagring beholdes.");}catch(e){cloudStatus("Utlogging feilet.");}}
+async function cloudRestore(){try{const {b,auth}=await cloudInit();b.onAuthStateChanged(auth,u=>{if(u&&!cloudUser){cloudUser=u;cloudSchedule();}});}catch(e){cloudStatus("Skytilkobling utilgjengelig.");}}
+window.addEventListener("online",cloudSchedule);
+cloudRestore();
+
 applyVisual();
 
 showMenu();
