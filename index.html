@@ -184,7 +184,7 @@ body::after{content:"";position:fixed;top:0;left:0;right:0;height:env(safe-area-
 
 <canvas id="game"></canvas>
 
-<div id="menu" class="screen"><h1>FLAPPY BIRD</h1><div class="card"><button class="green" onclick="showPlayers()">Play</button><button onclick="showSkins()">Skins</button><button class="gray" onclick="showSettings()">Settings</button><button class="gray" onclick="showLeaderboard()">Resultattavle</button></div><div class="version">VERSION 6.9</div></div><div id="players" class="screen hidden">
+<div id="menu" class="screen"><h1>FLAPPY BIRD</h1><div class="card"><button class="green" onclick="showPlayers()">Play</button><button onclick="showSkins()">Skins</button><button class="gray" onclick="showSettings()">Settings</button><button class="gray" onclick="showLeaderboard()">Resultattavle</button></div><div class="version">VERSION 7.0</div></div><div id="players" class="screen hidden">
 
   <h1>FLAPPY BIRD</h1>
 
@@ -206,7 +206,7 @@ body::after{content:"";position:fixed;top:0;left:0;right:0;height:env(safe-area-
 
   </div>
 
-  <div class="version">VERSION 6.9</div>
+  <div class="version">VERSION 7.0</div>
 
 </div>
 
@@ -396,14 +396,15 @@ function saveNames(){names.Ivan=$("name1").value.trim()||"Ivan";names.Alva=$("na
 let skinPlayer="Ivan";
 function makeButton(parent,label,action,color){const b=document.createElement("button");b.textContent=label;b.style.width="47%";b.style.margin="3px";b.style.padding="10px";b.style.background=color;b.classList.toggle("activeChoice",color==="#3478e5");b.onclick=action;parent.appendChild(b);}
 function showSkins(){state="skins";showScreen("skins");const chosen=prefs.skins[skinPlayer],colors=skins[chosen];$("previewBody").setAttribute("fill",colors[0]);$("previewWing").setAttribute("fill",colors[1]);$("selectedSkin").textContent=names[skinPlayer]+" – "+chosen;const p=$("skinPlayers"),s=$("skinChoices");p.replaceChildren();s.replaceChildren();for(const n of ["Ivan","Alva"])makeButton(p,names[n],()=>{skinPlayer=n;showSkins();},n===skinPlayer?"#3478e5":"#344b5b");for(const [n,c] of Object.entries(skins)){makeButton(s,n+(prefs.skins[skinPlayer]===n?" ✓":""),()=>{prefs.skins[skinPlayer]=n;savePrefs();showSkins();},"#344b5b");s.lastChild.style.border="4px solid "+c[0];}}
-async function checkUpdate(){const b=$("updateButton"),s=$("updateStatus");b.disabled=true;s.textContent="Sjekker etter oppdatering…";try{const u=new URL("./index.html",location.href);u.searchParams.set("_update",Date.now());const r=await fetch(u,{cache:"no-store"});if(!r.ok)throw Error("HTTP "+r.status);const html=await r.text();const v=html.match(/VERSION (\d+\.\d+)/)?.[1];if(!v)throw Error("Version missing");const current="6.9";const parts=v.split(".").map(Number),cur=current.split(".").map(Number);if(parts[0]>cur[0]||(parts[0]===cur[0]&&parts[1]>cur[1])){s.textContent="Ny versjon "+v+" funnet. Oppdaterer…";const next=new URL(location.href);next.searchParams.set("_update",Date.now());location.replace(next.href);}else{s.textContent="Du har nyeste publiserte versjon ("+current+").";}}catch(e){s.textContent="Kunne ikke sjekke. Prøv igjen senere.";}finally{b.disabled=false;}}
+async function checkUpdate(){const b=$("updateButton"),s=$("updateStatus");b.disabled=true;s.textContent="Sjekker etter oppdatering…";try{const u=new URL("./index.html",location.href);u.searchParams.set("_update",Date.now());const r=await fetch(u,{cache:"no-store"});if(!r.ok)throw Error("HTTP "+r.status);const html=await r.text();const v=html.match(/VERSION (\d+\.\d+)/)?.[1];if(!v)throw Error("Version missing");const current="7.0";const parts=v.split(".").map(Number),cur=current.split(".").map(Number);if(parts[0]>cur[0]||(parts[0]===cur[0]&&parts[1]>cur[1])){s.textContent="Ny versjon "+v+" funnet. Oppdaterer…";const next=new URL(location.href);next.searchParams.set("_update",Date.now());location.replace(next.href);}else{s.textContent="Du har nyeste publiserte versjon ("+current+").";}}catch(e){s.textContent="Kunne ikke sjekke. Prøv igjen senere.";}finally{b.disabled=false;}}
 function setVisual(k,v){prefs[k]=v;savePrefs();applyVisual();showSettings();}
 function applyVisual(){const sky=prefs.theme==="night"?"#192b49":"#80c5ce";document.documentElement.style.setProperty("--sky",sky);document.documentElement.style.backgroundColor=sky;document.body.style.backgroundColor=sky;document.querySelector('meta[name="theme-color"]').content=sky;document.body.classList.toggle("night",prefs.theme==="night");canvas.classList.toggle("pixel",prefs.graphics==="pixel");resize(true);cacheBackground();dirty=true;}
-function showSettings(){for(const k of ["day","night","smooth","pixel"])$(k).classList.toggle("activeChoice",k===prefs.theme||k===prefs.graphics);$("soundToggle").textContent="Hoppelyd: "+(prefs.sound?"PÅ":"AV");state="settings";showScreen("settings");$("musicToggle").textContent="Musikk: "+(prefs.music?"PÅ":"AV");for(const f of [60,120])$("fps"+f).classList.toggle("activeChoice",prefs.fps===f);}
+function showSettings(){for(const k of ["day","night","smooth","pixel"])$(k).classList.toggle("activeChoice",k===prefs.theme||k===prefs.graphics);$("soundToggle").textContent="Lydeffekter: "+(prefs.sound?"PÅ":"AV");state="settings";showScreen("settings");$("musicToggle").textContent="Musikk: "+(prefs.music?"PÅ":"AV");for(const f of [60,120])$("fps"+f).classList.toggle("activeChoice",prefs.fps===f);}
 function setFPS(f){prefs.fps=f;savePrefs();showSettings();}
 let audio=null,musicTimer=null,musicStep=0;
 let effectsAudio=null;
 function toggleSound(){prefs.sound=!prefs.sound;savePrefs();if(prefs.sound)flapSound();showSettings();}
+function coinSound(){if(!prefs.sound)return;try{const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;if(!effectsAudio)effectsAudio=new AC();if(effectsAudio.state!=="running"){effectsAudio.resume().catch(()=>{});return;}const t=effectsAudio.currentTime;for(const [i,hz] of [988,1319,1976].entries()){const o=effectsAudio.createOscillator(),g=effectsAudio.createGain(),s=t+i*.045;o.type="square";o.frequency.value=hz;g.gain.setValueAtTime(.001,s);g.gain.exponentialRampToValueAtTime(.065,s+.005);g.gain.exponentialRampToValueAtTime(.001,s+.085);o.connect(g);g.connect(effectsAudio.destination);o.start(s);o.stop(s+.09);}}catch(e){}}
 function flapSound(){if(!prefs.sound)return;try{const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;if(!effectsAudio)effectsAudio=new AC();const play=()=>{const t=effectsAudio.currentTime,o=effectsAudio.createOscillator(),g=effectsAudio.createGain();o.type="triangle";o.frequency.setValueAtTime(420,t);o.frequency.exponentialRampToValueAtTime(980,t+.065);o.frequency.exponentialRampToValueAtTime(680,t+.11);g.gain.setValueAtTime(.001,t);g.gain.exponentialRampToValueAtTime(.16,t+.008);g.gain.exponentialRampToValueAtTime(.001,t+.13);o.connect(g);g.connect(effectsAudio.destination);o.start(t);o.stop(t+.14);};if(effectsAudio.state==="running")play();else effectsAudio.resume().then(play).catch(()=>{});}catch(e){}}
 const melody=[60,64,67,72,67,64,62,65,69,74,69,65,59,62,67,71];
 function stopMusic(){if(musicTimer!==null){clearInterval(musicTimer);musicTimer=null;}if(audio&&audio.state==="running")audio.suspend().catch(()=>{});}
@@ -626,7 +627,7 @@ function update() {
 
     }
 
-    if(!p.coinTaken && Math.hypot(bird.x-(p.x+PIPE_WIDTH/2),bird.y-(p.top+p.gap/2)) < bird.radius+12){p.coinTaken=true;roundCoins++;profiles[player].coins=(profiles[player].coins||0)+1;saveProfiles();$("coinHud").textContent="★ "+roundCoins;}
+    if(!p.coinTaken && Math.hypot(bird.x-(p.x+PIPE_WIDTH/2),bird.y-(p.top+p.gap/2)) < bird.radius+12){p.coinTaken=true;roundCoins++;coinSound();profiles[player].coins=(profiles[player].coins||0)+1;saveProfiles();$("coinHud").textContent="★ "+roundCoins;}
     if (
       !p.passed &&
       p.x + PIPE_WIDTH + 4 <
