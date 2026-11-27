@@ -177,14 +177,14 @@ small{font-size:9px;line-height:1.7;} h2{font-size:14px;line-height:1.6;}
 #settings button.activeChoice,#skinPlayers button.activeChoice{background:#648e32!important;}
 #names input{display:block;width:100%;margin:12px 0 20px;padding:12px;font:16px monospace;border:3px solid #59423b;background:#fff6ce;touch-action:auto;user-select:text;-webkit-user-select:text;}#names label{font-size:11px;}#settings .card{padding:14px;}#settings button{padding:9px 5px;margin:4px 0;}@media(max-height:700px){#settings h1{margin:5px;}#settings button{padding:6px 4px;font-size:10px;}}#ready{justify-content:flex-start;padding-top:calc(env(safe-area-inset-top) + 17vh);pointer-events:none;}#readyTitle{margin:0;animation:readyPulse 1.2s ease-in-out infinite;}#playerTitle{margin-top:12px;color:#fff;text-shadow:2px 2px #59423b;}#readyText{margin-top:clamp(35px,15vh,130px);display:flex;flex-direction:column;align-items:center;gap:8px;animation:readyPulse 1.2s ease-in-out infinite;}#readyText svg{animation:demoFlap .8s ease-in-out infinite;} .tapArrow{font-size:30px;color:#59423b;}.tapLabel{background:#d92720;border:3px solid #fff;padding:8px;color:white;}.readyTop{position:absolute;top:calc(env(safe-area-inset-top) + 24px);font-size:32px;color:white;text-shadow:3px 3px #222;}@keyframes readyPulse{50%{opacity:.65;}}@keyframes demoFlap{50%{transform:translateY(-14px) rotate(-12deg);}}#pauseButton{position:fixed;top:calc(env(safe-area-inset-top) + 12px);left:12px;width:44px;height:44px;padding:0;margin:0;z-index:5;font-size:22px;}#hud{padding-left:48px;}#pauseMenu{background:#0003;}#pauseMenu .card{max-width:300px;}/* Keep moving scenery away from the system status-bar backdrop. */
 body::after{content:"";position:fixed;top:0;left:0;right:0;height:env(safe-area-inset-top,0px);background:#80c5ce;pointer-events:none;z-index:20;}
-#menu{padding-top:calc(24px + env(safe-area-inset-top) + 5vh);}#settings{overflow-y:auto;touch-action:pan-y;}#settings .card{flex-shrink:0;}#settings h1{margin:8px 0;}#settings button{padding:7px 5px;margin:3px 0;}#settings .optionRow{display:flex;gap:6px;}body.night::after{background:#192b49;}canvas.pixel{image-rendering:pixelated;}@media(max-height:700px){#settings{justify-content:flex-start;}}#coinHud{text-align:right;color:#ffda58;margin-top:9px;}#resultCoins{color:#ffda58;text-shadow:2px 2px #49362e;font-size:12px;margin:8px 0;}html,body{background:linear-gradient(to bottom,var(--sky,#80c5ce) 0%,var(--sky,#80c5ce) 78%,#ded994 78%,#ded994 100%);min-height:100dvh;}canvas{height:100dvh;width:100vw;}body::after{background:var(--sky,#80c5ce)!important;}body::before{content:"";position:fixed;bottom:0;left:0;right:0;height:env(safe-area-inset-bottom,0px);background:#ded994;pointer-events:none;z-index:20;}html,body{height:100%;min-height:0;background:#ded994;overscroll-behavior:none;}canvas{position:fixed;inset:0;width:100%;height:100%;}body::before,body::after{display:none!important;}#hud{top:calc(max(env(safe-area-inset-top), 44px) + 34px);}#pauseButton{top:calc(max(env(safe-area-inset-top), 44px) + 26px);}.readyTop{top:calc(max(env(safe-area-inset-top), 44px) + 38px);}html,body{background:var(--sky,#80c5ce)!important;}#hud{top:calc(max(env(safe-area-inset-top), 44px) + 49px)!important;}#pauseButton{top:calc(max(env(safe-area-inset-top), 44px) + 41px)!important;}.readyTop{top:calc(max(env(safe-area-inset-top), 44px) + 53px)!important;}#pauseButton{width:48px;height:48px;display:grid;place-items:center;}#pauseButton::before,#pauseButton::after{content:"";position:absolute;top:13px;bottom:13px;width:6px;background:#fff8df;box-shadow:2px 2px #9c3c14;}#pauseButton::before{left:14px;}#pauseButton::after{right:14px;}#pauseButton{font-size:0;}#hud{padding-left:56px;}#skins .card{max-height:62dvh;overflow:auto;touch-action:pan-y;}#skins .card *{touch-action:pan-y;}#skinChoices button{font-size:10px;padding:9px 3px!important;min-height:42px;}#skinBalance{color:#765019;font-size:13px;margin:10px 0;}#skinMessage{min-height:18px;color:#765019;} </style>
+#menu{padding-top:calc(24px + env(safe-area-inset-top) + 5vh);}#settings{overflow-y:auto;touch-action:pan-y;}#settings .card{flex-shrink:0;}#settings h1{margin:8px 0;}#settings button{padding:7px 5px;margin:3px 0;}#settings .optionRow{display:flex;gap:6px;}body.night::after{background:#192b49;}canvas.pixel{image-rendering:pixelated;}@media(max-height:700px){#settings{justify-content:flex-start;}}#coinHud{text-align:right;color:#ffda58;margin-top:9px;}#resultCoins{color:#ffda58;text-shadow:2px 2px #49362e;font-size:12px;margin:8px 0;}html,body{background:linear-gradient(to bottom,var(--sky,#80c5ce) 0%,var(--sky,#80c5ce) 78%,#ded994 78%,#ded994 100%);min-height:100dvh;}canvas{height:100dvh;width:100vw;}body::after{background:var(--sky,#80c5ce)!important;}body::before{content:"";position:fixed;bottom:0;left:0;right:0;height:env(safe-area-inset-bottom,0px);background:#ded994;pointer-events:none;z-index:20;}html,body{height:100%;min-height:0;background:#ded994;overscroll-behavior:none;}canvas{position:fixed;inset:0;width:100%;height:100%;}body::before,body::after{display:none!important;}#hud{top:calc(max(env(safe-area-inset-top), 44px) + 34px);}#pauseButton{top:calc(max(env(safe-area-inset-top), 44px) + 26px);}.readyTop{top:calc(max(env(safe-area-inset-top), 44px) + 38px);}html,body{background:var(--sky,#80c5ce)!important;}#hud{top:calc(max(env(safe-area-inset-top), 44px) + 49px)!important;}#pauseButton{top:calc(max(env(safe-area-inset-top), 44px) + 41px)!important;}.readyTop{top:calc(max(env(safe-area-inset-top), 44px) + 53px)!important;}#pauseButton{width:48px;height:48px;display:grid;place-items:center;}#pauseButton::before,#pauseButton::after{content:"";position:absolute;top:13px;bottom:13px;width:6px;background:#fff8df;box-shadow:2px 2px #9c3c14;}#pauseButton::before{left:14px;}#pauseButton::after{right:14px;}#pauseButton{font-size:0;}#hud{padding-left:56px;}#skins .card{max-height:62dvh;overflow:auto;touch-action:pan-y;}#skins .card *{touch-action:pan-y;}#skinChoices button{font-size:10px;padding:9px 3px!important;min-height:42px;}#skinBalance{color:#765019;font-size:13px;margin:10px 0;}#skinMessage{min-height:18px;color:#765019;} #loading{z-index:100;background:#80c5ce;gap:20px;}#loading img{image-rendering:pixelated;border-radius:20px;} .loadTrack{width:180px;height:18px;border:3px solid #633b23;background:#fff5cb;overflow:hidden}.loadTrack i{display:block;height:100%;width:45%;background:#70b833;animation:loadMove .8s infinite alternate ease-in-out}@keyframes loadMove{to{transform:translateX(120%)}}#medals .card{max-height:74dvh;overflow:auto;touch-action:pan-y;}#medals .card *{touch-action:pan-y;}#medalList{display:grid;grid-template-columns:1fr 1fr;gap:8px}.medalTile{border:2px solid #a78b50;padding:8px 3px;text-align:center;font-size:9px;line-height:1.6}.medalTile.locked{opacity:.5}.medalBadge{display:grid;place-items:center;width:46px;height:46px;border:3px solid #63503a;border-radius:50%;box-shadow:inset 0 0 0 3px #fff8d8;margin:4px auto;font-size:22px;color:#49362e}#medalName{display:block;max-width:110px;margin:auto}#menu .card{max-height:70dvh;overflow:auto;touch-action:pan-y;}</style>
 </head>
 
 <body>
 
 <canvas id="game"></canvas>
 
-<div id="menu" class="screen"><h1>FLAPPY BIRD</h1><div class="card"><button class="green" onclick="showPlayers()">Play</button><button onclick="showSkins()">Skins</button><button class="gray" onclick="showSettings()">Settings</button><button class="gray" onclick="showLeaderboard()">Resultattavle</button></div><div class="version">VERSION 7.1</div></div><div id="players" class="screen hidden">
+<div id="menu" class="screen"><h1>FLAPPY BIRD</h1><div class="card"><button class="green" onclick="showPlayers()">Play</button><button onclick="showSkins()">Skins</button><button onclick="showMedals()">Medals</button><button class="gray" onclick="showSettings()">Settings</button><button class="gray" onclick="showLeaderboard()">Resultattavle</button></div><div class="version">VERSION 7.2</div></div><div id="players" class="screen hidden">
 
   <h1>FLAPPY BIRD</h1>
 
@@ -206,11 +206,11 @@ body::after{content:"";position:fixed;top:0;left:0;right:0;height:env(safe-area-
 
   </div>
 
-  <div class="version">VERSION 7.1</div>
+  <div class="version">VERSION 7.2</div>
 
 </div>
 
-<div id="skins" class="screen hidden"><h1>SKINS</h1><div class="skinPreview"><svg viewBox="0 0 100 80" role="img" aria-label="Valgt fugl"><ellipse id="previewBody" cx="45" cy="40" rx="30" ry="22.5"/><ellipse id="previewWing" cx="30" cy="46" rx="15" ry="9"/><circle cx="60" cy="31" r="13.5" fill="white"/><circle cx="64.5" cy="31" r="5.25" fill="#20252A"/><ellipse cx="73.5" cy="46" rx="12" ry="6" fill="#FF8B31"/></svg><div id="selectedSkin"></div></div><div class="card"><div id="skinPlayers"></div><div id="skinBalance"></div><div id="skinChoices"></div><small id="skinMessage" role="status"></small><button class="gray" onclick="showMenu()">Tilbake</button></div></div><div id="settings" class="screen hidden"><h1>SETTINGS</h1><div class="card"><button id="musicToggle" onclick="toggleMusic()"></button><button id="soundToggle" onclick="toggleSound()"></button><button id="fps60" onclick="setFPS(60)">60 FPS</button><button id="fps120" onclick="setFPS(120)">120 FPS</button><div class="optionRow"><button id="day" onclick="setVisual('theme','day')">Dag</button><button id="night" onclick="setVisual('theme','night')">Natt</button></div><div class="optionRow"><button id="smooth" onclick="setVisual('graphics','smooth')">Moderne</button><button id="pixel" onclick="setVisual('graphics','pixel')">Retro</button></div><button onclick="showNames()">Endre spillernavn</button><button id="updateButton" onclick="checkUpdate()">Søk etter oppdatering</button><small id="updateStatus" role="status" aria-live="polite"></small><small>Faktisk FPS avhenger av iOS og nettleseren.</small><button class="gray" onclick="showMenu()">Tilbake</button></div></div><div id="names" class="screen hidden"><h1>SPILLERNAVN</h1><div class="card"><label for="name1">Spiller 1</label><input id="name1" maxlength="18" autocomplete="off"><label for="name2">Spiller 2</label><input id="name2" maxlength="18" autocomplete="off"><button onclick="saveNames()">Lagre</button><button onclick="showSettings()">Tilbake</button></div></div><div id="ready" class="screen hidden"><div class="readyTop">0</div><h1 id="readyTitle">GET READY</h1><small id="playerTitle"></small><div id="readyText"><svg viewBox="0 0 100 80" width="76" height="60" aria-hidden="true"><g fill="#eee" stroke="#59423b" stroke-width="4"><path d="M15 25H25V15H65V22H80V48H65V60H25V50H15Z"/><path d="M50 15H70V35H50Z" fill="white"/><path d="M70 38H90V49H70Z" fill="#d96118"/><path d="M15 35H40V48H15Z"/></g><path d="M60 20V30" stroke="#333" stroke-width="5"/></svg><div class="tapArrow">↑</div><div class="tapLabel">TAP</div></div></div>
+<div id="loading" class="screen"><img src="./icon-180.png" alt="" width="110" height="110"><h1>FLAPPY BIRD</h1><div class="loadTrack"><i></i></div><small>LOADING...</small></div><div id="medals" class="screen hidden"><h1>MEDALS</h1><div class="card"><div id="medalPlayers"></div><h2 id="medalCount"></h2><div id="medalList"></div><button onclick="showMenu()">Tilbake</button></div></div><div id="skins" class="screen hidden"><h1>SKINS</h1><div class="skinPreview"><svg viewBox="0 0 100 80" role="img" aria-label="Valgt fugl"><ellipse id="previewBody" cx="45" cy="40" rx="30" ry="22.5"/><ellipse id="previewWing" cx="30" cy="46" rx="15" ry="9"/><circle cx="60" cy="31" r="13.5" fill="white"/><circle cx="64.5" cy="31" r="5.25" fill="#20252A"/><ellipse cx="73.5" cy="46" rx="12" ry="6" fill="#FF8B31"/></svg><div id="selectedSkin"></div></div><div class="card"><div id="skinPlayers"></div><div id="skinBalance"></div><div id="skinChoices"></div><small id="skinMessage" role="status"></small><button class="gray" onclick="showMenu()">Tilbake</button></div></div><div id="settings" class="screen hidden"><h1>SETTINGS</h1><div class="card"><button id="musicToggle" onclick="toggleMusic()"></button><button id="soundToggle" onclick="toggleSound()"></button><button id="fps60" onclick="setFPS(60)">60 FPS</button><button id="fps120" onclick="setFPS(120)">120 FPS</button><div class="optionRow"><button id="day" onclick="setVisual('theme','day')">Dag</button><button id="night" onclick="setVisual('theme','night')">Natt</button></div><div class="optionRow"><button id="smooth" onclick="setVisual('graphics','smooth')">Moderne</button><button id="pixel" onclick="setVisual('graphics','pixel')">Retro</button></div><button onclick="showNames()">Endre spillernavn</button><button id="updateButton" onclick="checkUpdate()">Søk etter oppdatering</button><small id="updateStatus" role="status" aria-live="polite"></small><small>Faktisk FPS avhenger av iOS og nettleseren.</small><button class="gray" onclick="showMenu()">Tilbake</button></div></div><div id="names" class="screen hidden"><h1>SPILLERNAVN</h1><div class="card"><label for="name1">Spiller 1</label><input id="name1" maxlength="18" autocomplete="off"><label for="name2">Spiller 2</label><input id="name2" maxlength="18" autocomplete="off"><button onclick="saveNames()">Lagre</button><button onclick="showSettings()">Tilbake</button></div></div><div id="ready" class="screen hidden"><div class="readyTop">0</div><h1 id="readyTitle">GET READY</h1><small id="playerTitle"></small><div id="readyText"><svg viewBox="0 0 100 80" width="76" height="60" aria-hidden="true"><g fill="#eee" stroke="#59423b" stroke-width="4"><path d="M15 25H25V15H65V22H80V48H65V60H25V50H15Z"/><path d="M50 15H70V35H50Z" fill="white"/><path d="M70 38H90V49H70Z" fill="#d96118"/><path d="M15 35H40V48H15Z"/></g><path d="M60 20V30" stroke="#333" stroke-width="5"/></svg><div class="tapArrow">↑</div><div class="tapLabel">TAP</div></div></div>
 <div id="pauseMenu" class="screen hidden"><h1>PAUSED</h1><div class="card"><button onclick="resumeGame()">Fortsett</button><button onclick="showMenu()">Hovedmeny</button></div></div>
 <button id="pauseButton" class="hidden" aria-label="Pause" onclick="pauseGame()">Ⅱ</button>
 <div id="hud" class="hidden">
@@ -228,7 +228,7 @@ body::after{content:"";position:fixed;top:0;left:0;right:0;height:env(safe-area-
 
 <div id="gameover" class="screen hidden">
 <h1>GAME OVER</h1>
-<div class="card"><h2 id="resultPlayer"></h2><div class="medal">MEDAL<span id="medalIcon">★</span></div><div class="scorePanel">SCORE<div id="resultScore">0</div><span id="newRecord" class="hidden">NEW</span> BEST<div id="resultBest">0</div></div></div>
+<div class="card"><h2 id="resultPlayer"></h2><div class="medal">MEDAL<span id="medalIcon">★</span><small id="medalName"></small></div><div class="scorePanel">SCORE<div id="resultScore">0</div><span id="newRecord" class="hidden">NEW</span> BEST<div id="resultBest">0</div></div></div>
 <div id="resultCoins">★ 0</div><div class="actions"><button onclick="prepareGame()">RETRY</button><button onclick="showMenu()">MENU</button></div>
 </div>
 
@@ -287,11 +287,11 @@ let profiles = {
 try {
 
   const saved = JSON.parse(
-    localStorage.getItem("flappyProfilesV3")
+    localStorage.getItem("flappyProfilesV3") || localStorage.getItem("flappyProfilesBackup")
   );
 
   if (saved) {
-    for(const n of ["Ivan","Alva"]){if(!saved[n])continue;profiles[n]={best:Math.max(0,Math.floor(Number(saved[n].best)||0)),games:Math.max(0,Math.floor(Number(saved[n].games)||0)),coins:Math.max(0,Math.floor(Number(saved[n].coins)||0)),owned:Array.isArray(saved[n].owned)?saved[n].owned.filter(x=>typeof x==="string"):[],equipped:typeof saved[n].equipped==="string"?saved[n].equipped:null};}
+    for(const n of ["Ivan","Alva"]){if(!saved[n])continue;profiles[n]={best:Math.max(0,Math.floor(Number(saved[n].best)||0)),games:Math.max(0,Math.floor(Number(saved[n].games)||0)),coins:Math.max(0,Math.floor(Number(saved[n].coins)||0)),owned:Array.isArray(saved[n].owned)?saved[n].owned.filter(x=>typeof x==="string"):[],equipped:typeof saved[n].equipped==="string"?saved[n].equipped:null,lifetimeCoins:Math.max(Number(saved[n].coins)||0,Number(saved[n].lifetimeCoins)||0),medals:Array.isArray(saved[n].medals)?saved[n].medals:[]};}
   }
 
 } catch(e) {}
@@ -304,6 +304,7 @@ function saveProfiles() {
       "flappyProfilesV3",
       JSON.stringify(profiles)
     );
+    try{localStorage.setItem("flappyProfilesBackup",JSON.stringify(profiles));}catch(e){}
     return true;
   } catch(e) { return false; }
 }
@@ -346,7 +347,7 @@ function resize(force=false) {
 function showScreen(id) {
 
   const screens = [
-    "menu", "players", "skins", "settings", "names",
+    "menu", "players", "skins", "settings", "names", "medals",
     "ready", "pauseMenu",
     "gameover",
     "leaderboard",
@@ -395,12 +396,20 @@ function showPlayers(){state="players";$("ivanLabel").textContent=names.Ivan;$("
 let names={Ivan:"Ivan",Alva:"Alva"};try{const n=JSON.parse(localStorage.getItem("flappyNames"));for(const k of ["Ivan","Alva"])if(typeof n?.[k]==="string"&&n[k].trim())names[k]=n[k].trim().slice(0,18);}catch(e){}
 function showNames(){state="names";$("name1").value=names.Ivan;$("name2").value=names.Alva;showScreen("names");}
 function saveNames(){names.Ivan=$("name1").value.trim()||"Ivan";names.Alva=$("name2").value.trim()||"Alva";try{localStorage.setItem("flappyNames",JSON.stringify(names));}catch(e){}showSettings();}
+const medals=[
+["s1","First Flight","best",5,"#c98d55","✦"],["s2","Bronze","best",10,"#bd783e","★"],["s3","Silver","best",20,"#d4dce5","◆"],["s4","Gold","best",40,"#ffd34b","★"],["s5","Platinum","best",60,"#b6e5e9","✧"],["s6","Ruby","best",100,"#ef6262","♥"],["s7","Emerald","best",150,"#59ce88","◆"],["s8","Diamond","best",200,"#80eaff","✦"],["s9","Master","best",300,"#b28af5","♛"],["s10","Legend","best",500,"#ffac36","♛"],
+["c1","Collector","lifetimeCoins",10,"#e8b85b","●"],["c2","Treasure","lifetimeCoins",50,"#f7cc55","✦"],["c3","Gold Rush","lifetimeCoins",100,"#ffb900","★"],["c4","Fortune","lifetimeCoins",250,"#f1a04e","◆"],["c5","Millionaire","lifetimeCoins",500,"#f8e276","♛"],["c6","Coin King","lifetimeCoins",1000,"#ffce44","♛"],
+["g1","Rookie","games",10,"#a6c3a0","✦"],["g2","Regular","games",50,"#82b6dd","★"],["g3","Veteran","games",100,"#c59bea","◆"],["g4","Dedicated","games",500,"#f58eb0","♛"]];
+function unlockMedals(p){p.medals=p.medals||[];for(const m of medals)if((p[m[2]]||0)>=m[3]&&!p.medals.includes(m[0]))p.medals.push(m[0]);}
+for(const p of Object.values(profiles))unlockMedals(p);
+let medalPlayer="Ivan";
+function showMedals(){state="medals";showScreen("medals");const p=profiles[medalPlayer];unlockMedals(p);saveProfiles();$("medalCount").textContent=p.medals.length+" / 20";const buttons=$("medalPlayers"),list=$("medalList");buttons.replaceChildren();list.replaceChildren();for(const n of ["Ivan","Alva"])makeButton(buttons,names[n],()=>{medalPlayer=n;showMedals();},"#344b5b");for(const m of medals){const unlocked=p.medals.includes(m[0]),tile=document.createElement("div");tile.className="medalTile"+(unlocked?"":" locked");const badge=document.createElement("span");badge.className="medalBadge";badge.style.background=unlocked?m[4]:"#aaa";badge.textContent=unlocked?m[5]:"?";tile.append(badge,document.createTextNode(m[1]),document.createElement("br"),document.createTextNode(m[3]+" "+({best:"score",lifetimeCoins:"coins",games:"runder"}[m[2]])),document.createElement("br"),document.createTextNode(unlocked?"UNLOCKED":Math.min(p[m[2]]||0,m[3])+"/"+m[3]));list.append(tile);}}
 let skinPlayer="Ivan";
 function makeButton(parent,label,action,color){const b=document.createElement("button");b.textContent=label;b.style.width="47%";b.style.margin="3px";b.style.padding="10px";b.style.background=color;b.classList.toggle("activeChoice",color==="#3478e5");b.onclick=action;parent.appendChild(b);}
 let previewSkin=null;
 function showSkins(message=""){state="skins";showScreen("skins");const profile=profiles[skinPlayer],chosen=previewSkin||prefs.skins[skinPlayer],colors=skins[chosen];$("previewBody").setAttribute("fill",colors[0]);$("previewWing").setAttribute("fill",colors[1]);$("selectedSkin").textContent=names[skinPlayer]+" – "+chosen;$("skinBalance").textContent="★ "+profile.coins+" COINS";$("skinMessage").textContent=message;const p=$("skinPlayers"),s=$("skinChoices");p.replaceChildren();s.replaceChildren();for(const n of ["Ivan","Alva"])makeButton(p,names[n],()=>{skinPlayer=n;previewSkin=null;showSkins();},n===skinPlayer?"#3478e5":"#344b5b");for(const [n,c] of Object.entries(skins)){const price=skinPrices[n]||0,owned=!price||profile.owned.includes(n);makeButton(s,n+(prefs.skins[skinPlayer]===n?" ✓":owned?"":" · ★ "+price),()=>{previewSkin=n;if(!owned){if(profile.coins<price){showSkins("Mangler "+(price-profile.coins)+" coins");return;}if(!confirm("Kjøp "+n+" for "+price+" coins?")){showSkins();return;}}const before={...profile,owned:[...profile.owned]};if(!owned){profile.coins-=price;profile.owned.push(n);}profile.equipped=n;if(!saveProfiles()){Object.assign(profile,before);showSkins("Kunne ikke lagre. Ingen coins trukket.");return;}prefs.skins[skinPlayer]=n;savePrefs();showSkins(owned?"Valgt":"Kjøpt og lagret");},"#344b5b");s.lastChild.style.border="4px solid "+c[0];}}
 
-async function checkUpdate(){const b=$("updateButton"),s=$("updateStatus");b.disabled=true;s.textContent="Sjekker etter oppdatering…";try{const u=new URL("./index.html",location.href);u.searchParams.set("_update",Date.now());const r=await fetch(u,{cache:"no-store"});if(!r.ok)throw Error("HTTP "+r.status);const html=await r.text();const v=html.match(/VERSION (\d+\.\d+)/)?.[1];if(!v)throw Error("Version missing");const current="7.1";const parts=v.split(".").map(Number),cur=current.split(".").map(Number);if(parts[0]>cur[0]||(parts[0]===cur[0]&&parts[1]>cur[1])){s.textContent="Ny versjon "+v+" funnet. Oppdaterer…";const next=new URL(location.href);next.searchParams.set("_update",Date.now());location.replace(next.href);}else{s.textContent="Du har nyeste publiserte versjon ("+current+").";}}catch(e){s.textContent="Kunne ikke sjekke. Prøv igjen senere.";}finally{b.disabled=false;}}
+async function checkUpdate(){const b=$("updateButton"),s=$("updateStatus");b.disabled=true;s.textContent="Sjekker etter oppdatering…";try{const u=new URL("./index.html",location.href);u.searchParams.set("_update",Date.now());const r=await fetch(u,{cache:"no-store"});if(!r.ok)throw Error("HTTP "+r.status);const html=await r.text();const v=html.match(/VERSION (\d+\.\d+)/)?.[1];if(!v)throw Error("Version missing");const current="7.2";const parts=v.split(".").map(Number),cur=current.split(".").map(Number);if(parts[0]>cur[0]||(parts[0]===cur[0]&&parts[1]>cur[1])){s.textContent="Ny versjon "+v+" funnet. Oppdaterer…";const next=new URL(location.href);next.searchParams.set("_update",Date.now());location.replace(next.href);}else{s.textContent="Du har nyeste publiserte versjon ("+current+").";}}catch(e){s.textContent="Kunne ikke sjekke. Prøv igjen senere.";}finally{b.disabled=false;}}
 function setVisual(k,v){prefs[k]=v;savePrefs();applyVisual();showSettings();}
 function applyVisual(){const sky=prefs.theme==="night"?"#192b49":"#80c5ce";document.documentElement.style.setProperty("--sky",sky);document.documentElement.style.backgroundColor=sky;document.body.style.backgroundColor=sky;document.querySelector('meta[name="theme-color"]').content=sky;document.body.classList.toggle("night",prefs.theme==="night");canvas.classList.toggle("pixel",prefs.graphics==="pixel");resize(true);cacheBackground();dirty=true;}
 function showSettings(){for(const k of ["day","night","smooth","pixel"])$(k).classList.toggle("activeChoice",k===prefs.theme||k===prefs.graphics);$("soundToggle").textContent="Lydeffekter: "+(prefs.sound?"PÅ":"AV");state="settings";showScreen("settings");$("musicToggle").textContent="Musikk: "+(prefs.music?"PÅ":"AV");for(const f of [60,120])$("fps"+f).classList.toggle("activeChoice",prefs.fps===f);}
@@ -453,7 +462,7 @@ function prepareGame() {
 function startGame() {
 
   state = "playing";
-  profiles[player].games++;saveProfiles();
+  profiles[player].games++;unlockMedals(profiles[player]);saveProfiles();
 
   showScreen("hud");
 
@@ -554,7 +563,7 @@ function gameOver() {
 
   $("resultBest").textContent = profile.best;
   $("newRecord").classList.toggle("hidden", !newRecord);
-  $("medalIcon").style.background = score>=40?"#f7cc55":score>=20?"#e9e6d7":score>=10?"#c98d55":"#dcd894";
+  unlockMedals(profile);saveProfiles();const medal=medals.filter(m=>m[2]==="best"&&score>=m[3]).pop();$("medalIcon").style.background=medal?medal[4]:"#dcd894";$("medalIcon").textContent=medal?medal[5]:"–";$("medalName").textContent=medal?medal[1]:"Ingen medalje";
 
   showScreen("gameover");
 }
@@ -631,7 +640,7 @@ function update() {
 
     }
 
-    if(!p.coinTaken && Math.hypot(bird.x-(p.x+PIPE_WIDTH/2),bird.y-(p.top+p.gap/2)) < bird.radius+12){p.coinTaken=true;roundCoins++;coinSound();profiles[player].coins=(profiles[player].coins||0)+1;saveProfiles();$("coinHud").textContent="★ "+roundCoins;}
+    if(!p.coinTaken && Math.hypot(bird.x-(p.x+PIPE_WIDTH/2),bird.y-(p.top+p.gap/2)) < bird.radius+12){p.coinTaken=true;roundCoins++;coinSound();profiles[player].coins=(profiles[player].coins||0)+1;profiles[player].lifetimeCoins=(profiles[player].lifetimeCoins||0)+1;unlockMedals(profiles[player]);saveProfiles();$("coinHud").textContent="★ "+roundCoins;}
     if (
       !p.passed &&
       p.x + PIPE_WIDTH + 4 <
@@ -643,7 +652,7 @@ function update() {
       score++;
 
       $("score").textContent = score;
-      if(score > profiles[player].best){profiles[player].best=score;saveProfiles();}
+      if(score > profiles[player].best){profiles[player].best=score;unlockMedals(profiles[player]);saveProfiles();}
       $("bestHud").textContent="BEST: "+profiles[player].best;
 
     }
@@ -998,8 +1007,8 @@ document.addEventListener("visibilitychange",()=>{if(document.hidden){saveProfil
 applyVisual();
 
 showMenu();
-
 requestAnimationFrame(loop);
+(async()=>{try{await Promise.race([Promise.all([document.fonts?.ready,$("loading").querySelector("img").decode()]),new Promise(r=>setTimeout(r,3500))]);}catch(e){}saveProfiles();$("loading").classList.add("hidden");})();
 
 </script>
 
