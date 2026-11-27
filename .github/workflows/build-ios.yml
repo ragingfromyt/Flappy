@@ -1,0 +1,52 @@
+name: Build Flappy Bird IPA
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/build-ios.yml'
+jobs:
+  build:
+    runs-on: macos-15
+    steps:
+      - name: Build native web wrapper
+        run: |
+          mkdir -p Payload/Flappy.app
+          cat > Main.swift <<'EOF'
+          import UIKit
+          import WebKit
+          @main
+          class AppDelegate: UIResponder, UIApplicationDelegate {
+              var window: UIWindow?
+              func application(_ application: UIApplication, didFinishLaunchingWithOptions options: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
+                  let w = UIWindow(frame: UIScreen.main.bounds)
+                  w.rootViewController = GameController()
+                  w.makeKeyAndVisible()
+                  window = w
+                  return true
+              }
+          }
+          class GameController: UIViewController {
+              override var prefersStatusBarHidden: Bool { true }
+              override func loadView() {
+                  let config = WKWebViewConfiguration()
+                  config.allowsInlineMediaPlayback = true
+                  let web = WKWebView(frame: .zero, configuration: config)
+                  web.scrollView.isScrollEnabled = false
+                  web.scrollView.bounces = false
+                  view = web
+                  web.load(URLRequest(url: URL(string: "https://ragingfromyt.github.io/Flappy/")!, cachePolicy: .reloadIgnoringLocalCacheData))
+              }
+          }
+          EOF
+          SDK=$(xcrun --sdk iphoneos --show-sdk-path)
+          xcrun --sdk iphoneos swiftc -parse-as-library -target arm64-apple-ios16.0 -sdk "$SDK" Main.swift -o Payload/Flappy.app/Flappy
+          python3 - <<'PY'
+          import plistlib
+          with open('Payload/Flappy.app/Info.plist','wb') as f:
+              plistlib.dump(dict(CFBundleExecutable='Flappy',CFBundleIdentifier='com.ragingfromyt.flappy',CFBundleName='Flappy Bird',CFBundleDisplayName='Flappy Bird',CFBundlePackageType='APPL',CFBundleVersion='1',CFBundleShortVersionString='1.0',MinimumOSVersion='16.0',CFBundleSupportedPlatforms=['iPhoneOS'],UIDeviceFamily=[1],UILaunchScreen={},UISupportedInterfaceOrientations=['UIInterfaceOrientationPortrait']),f)
+          PY
+          zip -qr "Flappy Bird.ipa" Payload
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Flappy Bird
+          path: Flappy Bird.ipa
