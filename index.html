@@ -184,7 +184,7 @@ body::after{content:"";position:fixed;top:0;left:0;right:0;height:env(safe-area-
 
 <canvas id="game"></canvas>
 
-<div id="menu" class="screen"><h1>FLAPPY BIRD</h1><div class="card"><button class="green" onclick="showPlayers()">Play</button><button onclick="showSkins()">Skins</button><button class="gray" onclick="showSettings()">Settings</button><button class="gray" onclick="showLeaderboard()">Resultattavle</button></div><div class="version">VERSION 6.3</div></div><div id="players" class="screen hidden">
+<div id="menu" class="screen"><h1>FLAPPY BIRD</h1><div class="card"><button class="green" onclick="showPlayers()">Play</button><button onclick="showSkins()">Skins</button><button class="gray" onclick="showSettings()">Settings</button><button class="gray" onclick="showLeaderboard()">Resultattavle</button></div><div class="version">VERSION 6.4</div></div><div id="players" class="screen hidden">
 
   <h1>FLAPPY BIRD</h1>
 
@@ -206,7 +206,7 @@ body::after{content:"";position:fixed;top:0;left:0;right:0;height:env(safe-area-
 
   </div>
 
-  <div class="version">VERSION 6.3</div>
+  <div class="version">VERSION 6.4</div>
 
 </div>
 
@@ -327,7 +327,7 @@ function resize(force=false) {
 
   ctx.setTransform(DPR, 0, 0, DPR, 0, 0);ctx.imageSmoothingEnabled=prefs.graphics!=="pixel";
 
-  groundHeight = Math.min(65, H * 0.12);
+  groundHeight = Math.round(H * 0.215);
 
   if (bird) {
 
@@ -395,7 +395,7 @@ function saveNames(){names.Ivan=$("name1").value.trim()||"Ivan";names.Alva=$("na
 let skinPlayer="Ivan";
 function makeButton(parent,label,action,color){const b=document.createElement("button");b.textContent=label;b.style.width="47%";b.style.margin="3px";b.style.padding="10px";b.style.background=color;b.classList.toggle("activeChoice",color==="#3478e5");b.onclick=action;parent.appendChild(b);}
 function showSkins(){state="skins";showScreen("skins");const chosen=prefs.skins[skinPlayer],colors=skins[chosen];$("previewBody").setAttribute("fill",colors[0]);$("previewWing").setAttribute("fill",colors[1]);$("selectedSkin").textContent=names[skinPlayer]+" – "+chosen;const p=$("skinPlayers"),s=$("skinChoices");p.replaceChildren();s.replaceChildren();for(const n of ["Ivan","Alva"])makeButton(p,names[n],()=>{skinPlayer=n;showSkins();},n===skinPlayer?"#3478e5":"#344b5b");for(const [n,c] of Object.entries(skins)){makeButton(s,n+(prefs.skins[skinPlayer]===n?" ✓":""),()=>{prefs.skins[skinPlayer]=n;savePrefs();showSkins();},"#344b5b");s.lastChild.style.border="4px solid "+c[0];}}
-async function checkUpdate(){const b=$("updateButton"),s=$("updateStatus");b.disabled=true;s.textContent="Sjekker etter oppdatering…";try{const u=new URL("./index.html",location.href);u.searchParams.set("_update",Date.now());const r=await fetch(u,{cache:"no-store"});if(!r.ok)throw Error("HTTP "+r.status);const html=await r.text();const v=html.match(/VERSION (\d+\.\d+)/)?.[1];if(!v)throw Error("Version missing");const current="6.3";const parts=v.split(".").map(Number),cur=current.split(".").map(Number);if(parts[0]>cur[0]||(parts[0]===cur[0]&&parts[1]>cur[1])){s.textContent="Ny versjon "+v+" funnet. Oppdaterer…";const next=new URL(location.href);next.searchParams.set("_update",Date.now());location.replace(next.href);}else{s.textContent="Du har nyeste publiserte versjon ("+current+").";}}catch(e){s.textContent="Kunne ikke sjekke. Prøv igjen senere.";}finally{b.disabled=false;}}
+async function checkUpdate(){const b=$("updateButton"),s=$("updateStatus");b.disabled=true;s.textContent="Sjekker etter oppdatering…";try{const u=new URL("./index.html",location.href);u.searchParams.set("_update",Date.now());const r=await fetch(u,{cache:"no-store"});if(!r.ok)throw Error("HTTP "+r.status);const html=await r.text();const v=html.match(/VERSION (\d+\.\d+)/)?.[1];if(!v)throw Error("Version missing");const current="6.4";const parts=v.split(".").map(Number),cur=current.split(".").map(Number);if(parts[0]>cur[0]||(parts[0]===cur[0]&&parts[1]>cur[1])){s.textContent="Ny versjon "+v+" funnet. Oppdaterer…";const next=new URL(location.href);next.searchParams.set("_update",Date.now());location.replace(next.href);}else{s.textContent="Du har nyeste publiserte versjon ("+current+").";}}catch(e){s.textContent="Kunne ikke sjekke. Prøv igjen senere.";}finally{b.disabled=false;}}
 function setVisual(k,v){prefs[k]=v;savePrefs();applyVisual();showSettings();}
 function applyVisual(){document.body.classList.toggle("night",prefs.theme==="night");canvas.classList.toggle("pixel",prefs.graphics==="pixel");resize(true);cacheBackground();dirty=true;}
 function showSettings(){for(const k of ["day","night","smooth","pixel"])$(k).classList.toggle("activeChoice",k===prefs.theme||k===prefs.graphics);$("soundToggle").textContent="Hoppelyd: "+(prefs.sound?"PÅ":"AV");state="settings";showScreen("settings");$("musicToggle").textContent="Musikk: "+(prefs.music?"PÅ":"AV");for(const f of [60,120])$("fps"+f).classList.toggle("activeChoice",prefs.fps===f);}
@@ -738,33 +738,19 @@ function drawPipes() {
 }
 
 function drawGround() {
-
-  const y = H - groundHeight;
-
-  rectangle(
-    0, y, W,
-    groundHeight, "#CDA56A"
-  );
-
-  rectangle(
-    0, y, W, 18, "#4B9433"
-  );
-
-  rectangle(
-    0, y, W, 7, "#A2E455"
-  );
-
-  for (
-    let x = -(groundOffset % 28);
-    x < W;
-    x += 28
-  ) {
-
-    rectangle(
-      x, y + 8, 12, 8, "#77C33F"
-    );
-
-  }
+ const y=H-groundHeight;
+ rectangle(0,y,W,groundHeight,"#ded994");
+ rectangle(0,y,W,3,"#514737");
+ rectangle(0,y+3,W,3,"#e7f5a1");
+ rectangle(0,y+6,W,12,"#85c83d");
+ for(let x=-(groundOffset%24)-24;x<W;x+=24){
+   for(let j=0;j<12;j+=3)rectangle(x+12-j,y+6+j,12,3,"#b9e65d");
+ }
+ rectangle(0,y+18,W,3,"#527e29");
+ rectangle(0,y+21,W,4,"#bd9750");
+ rectangle(0,y+Math.round(groundHeight*.52),W,7,"#b5c56b");
+ rectangle(0,y+Math.round(groundHeight*.52)+7,W,8,"#d4ce87");
+ rectangle(0,H-5,W,5,"#b7ad75");
 }
 
 function drawBird(time) {
