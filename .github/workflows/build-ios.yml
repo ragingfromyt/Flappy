@@ -15,10 +15,15 @@ jobs:
           cat > Main.swift <<'EOF'
           import UIKit
           import WebKit
+          import AVFoundation
           @main
           class AppDelegate: UIResponder, UIApplicationDelegate {
               var window: UIWindow?
               func application(_ application: UIApplication, didFinishLaunchingWithOptions options: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
+                  do {
+                      try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [.mixWithOthers])
+                      try AVAudioSession.sharedInstance().setActive(true)
+                  } catch { print("Audio session: \(error)") }
                   let w = UIWindow(frame: UIScreen.main.bounds)
                   w.rootViewController = GameController()
                   w.makeKeyAndVisible()
@@ -31,6 +36,7 @@ jobs:
               override func loadView() {
                   let config = WKWebViewConfiguration()
                   config.allowsInlineMediaPlayback = true
+                  config.mediaTypesRequiringUserActionForPlayback = []
                   let web = WKWebView(frame: .zero, configuration: config)
                   web.scrollView.isScrollEnabled = false
                   web.scrollView.bounces = false
