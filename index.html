@@ -160,7 +160,7 @@ small {
 
 <canvas id="game"></canvas>
 
-<div id="menu" class="screen"><h1>FLAPPY BIRD</h1><div class="card"><button class="green" onclick="showPlayers()">Play</button><button onclick="showSkins()">Skins</button><button class="gray" onclick="showSettings()">Settings</button><button class="gray" onclick="showLeaderboard()">Resultattavle</button></div><div class="version">VERSION 5.6</div></div><div id="players" class="screen hidden">
+<div id="menu" class="screen"><h1>FLAPPY BIRD</h1><div class="card"><button class="green" onclick="showPlayers()">Play</button><button onclick="showSkins()">Skins</button><button class="gray" onclick="showSettings()">Settings</button><button class="gray" onclick="showLeaderboard()">Resultattavle</button></div><div class="version">VERSION 5.7</div></div><div id="players" class="screen hidden">
 
   <h1>FLAPPY BIRD</h1>
 
@@ -182,11 +182,11 @@ small {
 
   </div>
 
-  <div class="version">VERSION 5.6</div>
+  <div class="version">VERSION 5.7</div>
 
 </div>
 
-<div id="skins" class="screen hidden"><h1>SKINS</h1><div class="skinPreview"><svg viewBox="0 0 100 80" role="img" aria-label="Valgt fugl"><ellipse id="previewBody" cx="45" cy="40" rx="30" ry="22.5"/><ellipse id="previewWing" cx="30" cy="46" rx="15" ry="9"/><circle cx="60" cy="31" r="13.5" fill="white"/><circle cx="64.5" cy="31" r="5.25" fill="#20252A"/><ellipse cx="73.5" cy="46" rx="12" ry="6" fill="#FF8B31"/></svg><div id="selectedSkin"></div></div><div class="card"><div id="skinPlayers"></div><div id="skinChoices"></div><button class="gray" onclick="showMenu()">Tilbake</button></div></div><div id="settings" class="screen hidden"><h1>SETTINGS</h1><div class="card"><button id="musicToggle" onclick="toggleMusic()"></button><button id="soundToggle" onclick="toggleSound()"></button><button id="fps60" onclick="setFPS(60)">60 FPS</button><button id="fps120" onclick="setFPS(120)">120 FPS</button><small>Faktisk FPS avhenger av iOS og nettleseren.</small><button class="gray" onclick="showMenu()">Tilbake</button></div></div><div id="ready" class="screen hidden">
+<div id="skins" class="screen hidden"><h1>SKINS</h1><div class="skinPreview"><svg viewBox="0 0 100 80" role="img" aria-label="Valgt fugl"><ellipse id="previewBody" cx="45" cy="40" rx="30" ry="22.5"/><ellipse id="previewWing" cx="30" cy="46" rx="15" ry="9"/><circle cx="60" cy="31" r="13.5" fill="white"/><circle cx="64.5" cy="31" r="5.25" fill="#20252A"/><ellipse cx="73.5" cy="46" rx="12" ry="6" fill="#FF8B31"/></svg><div id="selectedSkin"></div></div><div class="card"><div id="skinPlayers"></div><div id="skinChoices"></div><button class="gray" onclick="showMenu()">Tilbake</button></div></div><div id="settings" class="screen hidden"><h1>SETTINGS</h1><div class="card"><button id="musicToggle" onclick="toggleMusic()"></button><button id="soundToggle" onclick="toggleSound()"></button><button id="fps60" onclick="setFPS(60)">60 FPS</button><button id="fps120" onclick="setFPS(120)">120 FPS</button><button id="updateButton" onclick="checkUpdate()">Søk etter oppdatering</button><small id="updateStatus" role="status" aria-live="polite"></small><small>Faktisk FPS avhenger av iOS og nettleseren.</small><button class="gray" onclick="showMenu()">Tilbake</button></div></div><div id="ready" class="screen hidden">
 
   <h1 id="playerTitle"></h1>
 
@@ -391,6 +391,7 @@ function showPlayers(){state="players";for(const n of ["Ivan","Alva"])$(n.toLowe
 let skinPlayer="Ivan";
 function makeButton(parent,label,action,color){const b=document.createElement("button");b.textContent=label;b.style.width="47%";b.style.margin="3px";b.style.padding="10px";b.style.background=color;b.onclick=action;parent.appendChild(b);}
 function showSkins(){state="skins";showScreen("skins");const chosen=prefs.skins[skinPlayer],colors=skins[chosen];$("previewBody").setAttribute("fill",colors[0]);$("previewWing").setAttribute("fill",colors[1]);$("selectedSkin").textContent=skinPlayer+" – "+chosen;const p=$("skinPlayers"),s=$("skinChoices");p.replaceChildren();s.replaceChildren();for(const n of ["Ivan","Alva"])makeButton(p,n,()=>{skinPlayer=n;showSkins();},n===skinPlayer?"#3478e5":"#344b5b");for(const [n,c] of Object.entries(skins)){makeButton(s,n+(prefs.skins[skinPlayer]===n?" ✓":""),()=>{prefs.skins[skinPlayer]=n;savePrefs();showSkins();},"#344b5b");s.lastChild.style.border="4px solid "+c[0];}}
+async function checkUpdate(){const b=$("updateButton"),s=$("updateStatus");b.disabled=true;s.textContent="Sjekker etter oppdatering…";try{const u=new URL("./index.html",location.href);u.searchParams.set("_update",Date.now());const r=await fetch(u,{cache:"no-store"});if(!r.ok)throw Error("HTTP "+r.status);const html=await r.text();const v=html.match(/VERSION (\d+\.\d+)/)?.[1];if(!v)throw Error("Version missing");const current="5.7";const parts=v.split(".").map(Number),cur=current.split(".").map(Number);if(parts[0]>cur[0]||(parts[0]===cur[0]&&parts[1]>cur[1])){s.textContent="Ny versjon "+v+" funnet. Oppdaterer…";const next=new URL(location.href);next.searchParams.set("_update",Date.now());location.replace(next.href);}else{s.textContent="Du har nyeste publiserte versjon ("+current+").";}}catch(e){s.textContent="Kunne ikke sjekke. Prøv igjen senere.";}finally{b.disabled=false;}}
 function showSettings(){$("soundToggle").textContent="Hoppelyd: "+(prefs.sound?"PÅ":"AV");state="settings";showScreen("settings");$("musicToggle").textContent="Musikk: "+(prefs.music?"PÅ":"AV");for(const f of [60,120])$("fps"+f).style.background=prefs.fps===f?"#46a65c":"#344b5b";}
 function setFPS(f){prefs.fps=f;savePrefs();showSettings();}
 let audio=null,musicTimer=null,musicStep=0;
