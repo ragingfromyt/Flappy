@@ -8,6 +8,7 @@ jobs:
   build:
     runs-on: macos-15-intel
     steps:
+      - uses: actions/checkout@v4
       - name: Build native web wrapper
         run: |
           mkdir -p Payload/Flappy.app
@@ -44,6 +45,16 @@ jobs:
           import plistlib
           with open('Payload/Flappy.app/Info.plist','wb') as f:
               plistlib.dump(dict(CFBundleExecutable='Flappy',CFBundleIdentifier='com.ragingfromyt.flappy',CFBundleName='Flappy Bird',CFBundleDisplayName='Flappy Bird',CFBundlePackageType='APPL',CFBundleVersion='1',CFBundleShortVersionString='1.0',MinimumOSVersion='16.0',CFBundleSupportedPlatforms=['iPhoneOS'],UIDeviceFamily=[1],UILaunchScreen={},UISupportedInterfaceOrientations=['UIInterfaceOrientationPortrait']),f)
+          PY
+          python3 generate-icons.py Payload/Flappy.app
+          python3 - <<'PY'
+          import plistlib
+          p='Payload/Flappy.app/Info.plist'
+          with open(p,'rb') as f: d=plistlib.load(f)
+          d['CFBundleIcons']={'CFBundlePrimaryIcon':{'CFBundleIconFiles':['icon-120','icon-180']}}
+          d['CFBundleIconFiles']=['icon-120','icon-180']
+          d['CFBundleVersion']='2'
+          with open(p,'wb') as f: plistlib.dump(d,f)
           PY
           zip -qr "Flappy Bird.ipa" Payload
       - uses: actions/upload-artifact@v4
