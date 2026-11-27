@@ -150,7 +150,7 @@ small {
 
 <canvas id="game"></canvas>
 
-<div id="menu" class="screen">
+<div id="menu" class="screen"><h1>FLAPPY BIRD</h1><div class="card"><button class="green" onclick="showPlayers()">Play</button><button onclick="showSkins()">Skins</button><button class="gray" onclick="showSettings()">Settings</button><button class="gray" onclick="showLeaderboard()">Resultattavle</button></div><div class="version">VERSION 5.0</div></div><div id="players" class="screen hidden">
 
   <h1>FLAPPY BIRD</h1>
 
@@ -168,17 +168,15 @@ small {
       <small id="alvaBest">Rekord: 0</small>
     </button>
 
-    <button class="gray" onclick="showLeaderboard()">
-      Resultattavle
-    </button>
+    <button class="gray" onclick="showMenu()">Tilbake</button>
 
   </div>
 
-  <div class="version">VERSION 4.0</div>
+  <div class="version">VERSION 5.0</div>
 
 </div>
 
-<div id="ready" class="screen hidden">
+<div id="skins" class="screen hidden"><h1>SKINS</h1><div class="card"><div id="skinPlayers"></div><div id="skinChoices"></div><button class="gray" onclick="showMenu()">Tilbake</button></div></div><div id="settings" class="screen hidden"><h1>SETTINGS</h1><div class="card"><button id="musicToggle" onclick="toggleMusic()"></button><button id="fps60" onclick="setFPS(60)">60 FPS</button><button id="fps120" onclick="setFPS(120)">120 FPS</button><small>Faktisk FPS avhenger av iOS og Scriptable.</small><button class="gray" onclick="showMenu()">Tilbake</button></div></div><div id="ready" class="screen hidden">
 
   <h1 id="playerTitle"></h1>
 
@@ -339,7 +337,7 @@ function resize() {
 function showScreen(id) {
 
   const screens = [
-    "menu",
+    "menu", "players", "skins", "settings",
     "ready",
     "gameover",
     "leaderboard",
@@ -373,6 +371,23 @@ function showMenu() {
   showScreen("menu");
 }
 
+const skins={Classic:["#FFD744","#FFF0B0"],Pink:["#F4A2D1","#FFD3EB"],Ocean:["#369BFF","#BCE8FF"],Emerald:["#36C98A","#B8F5CF"],Shadow:["#394150","#A0A9BB"],Ruby:["#E94B4B","#FFB5A8"]};
+let prefs={fps:120,music:false,skins:{Ivan:"Classic",Alva:"Pink"}};
+try{const p=JSON.parse(localStorage.getItem("flappySettingsV5"));if(p){prefs.fps=p.fps===60?60:120;prefs.music=p.music===true;for(const n of ["Ivan","Alva"])if(p.skins&&skins[p.skins[n]])prefs.skins[n]=p.skins[n];}}catch(e){}
+function savePrefs(){try{localStorage.setItem("flappySettingsV5",JSON.stringify(prefs));}catch(e){}}
+function showPlayers(){state="players";showScreen("players");}
+let skinPlayer="Ivan";
+function makeButton(parent,label,action,color){const b=document.createElement("button");b.textContent=label;b.style.width="47%";b.style.margin="3px";b.style.padding="10px";b.style.background=color;b.onclick=action;parent.appendChild(b);}
+function showSkins(){state="skins";showScreen("skins");const p=$("skinPlayers"),s=$("skinChoices");p.replaceChildren();s.replaceChildren();for(const n of ["Ivan","Alva"])makeButton(p,n,()=>{skinPlayer=n;showSkins();},n===skinPlayer?"#3478e5":"#344b5b");for(const [n,c] of Object.entries(skins)){makeButton(s,n+(prefs.skins[skinPlayer]===n?" ✓":""),()=>{prefs.skins[skinPlayer]=n;savePrefs();showSkins();},"#344b5b");s.lastChild.style.border="4px solid "+c[0];}}
+function showSettings(){state="settings";showScreen("settings");$("musicToggle").textContent="Musikk: "+(prefs.music?"PÅ":"AV");for(const f of [60,120])$("fps"+f).style.background=prefs.fps===f?"#46a65c":"#344b5b";}
+function setFPS(f){prefs.fps=f;savePrefs();showSettings();}
+let audio=null,musicTimer=null,musicStep=0;
+const melody=[60,64,67,72,67,64,62,65,69,74,69,65,59,62,67,71];
+function stopMusic(){if(musicTimer!==null){clearInterval(musicTimer);musicTimer=null;}if(audio&&audio.state==="running")audio.suspend().catch(()=>{});}
+function startMusic(){if(!prefs.music||document.hidden||musicTimer!==null)return;try{const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;if(!audio)audio=new AC();audio.resume().catch(()=>{});const note=()=>{if(audio.state!=="running")return;const t=audio.currentTime,o=audio.createOscillator(),g=audio.createGain();o.type="triangle";o.frequency.value=440*Math.pow(2,(melody[musicStep++%melody.length]-69)/12);g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.045,t+.015);g.gain.exponentialRampToValueAtTime(.001,t+.23);o.connect(g);g.connect(audio.destination);o.start(t);o.stop(t+.25);};note();musicTimer=setInterval(note,300);}catch(e){}}
+function toggleMusic(){prefs.music=!prefs.music;savePrefs();if(prefs.music)startMusic();else stopMusic();showSettings();}
+document.addEventListener("click",()=>{if(prefs.music)startMusic();});
+document.addEventListener("visibilitychange",()=>{if(document.hidden)stopMusic();else if(prefs.music)startMusic();});
 function selectPlayer(name) {
 
   player = name;
@@ -748,9 +763,7 @@ function drawBird(time) {
 
   ellipse(
     0, 0, 20, 15,
-    player === "Ivan"
-      ? "#FFD744"
-      : "#F4A2D1"
+    skins[prefs.skins[player]][0]
   );
 
   ctx.save();
@@ -763,9 +776,7 @@ function drawBird(time) {
 
   ellipse(
     0, 0, 10, 6,
-    player === "Ivan"
-      ? "#FFF0B0"
-      : "#FFD3EB"
+    skins[prefs.skins[player]][1]
   );
 
   ctx.restore();
@@ -861,6 +872,7 @@ function draw(time) {
 let lastTime = 0;
 let accumulator = 0;
 
+let lastDraw=null;
 let fpsFrames = 0;
 let fpsTime = 0;
 
@@ -884,21 +896,14 @@ function loop(time) {
 
   }
 
-  if (
-    state === "playing" ||
-    state === "ready" ||
-    dirty
-  ) {
-
-    draw(time);
-
-    dirty = false;
-
-  }
+  const interval=1000/prefs.fps;
+  const elapsed=lastDraw===null?interval:time-lastDraw;
+  const rendered=dirty||((state==="playing"||state==="ready")&&elapsed>=interval-0.7);
+  if(rendered){draw(time);dirty=false;lastDraw=lastDraw===null||elapsed>interval*3?time:time-Math.max(0,elapsed-interval);}
 
   if (state === "playing") {
 
-    fpsFrames++;
+    if(rendered) fpsFrames++;
 
     fpsTime += realDt;
 
