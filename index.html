@@ -175,14 +175,14 @@ small{font-size:9px;line-height:1.7;} h2{font-size:14px;line-height:1.6;}
 #selectedSkin{font-size:11px;}#readyText{font-size:14px;}
 #skinPlayers button,#skinChoices button{background:revert-layer!important;}#skinPlayers button,#skinChoices button{background-color:#d96118!important;}
 #settings button.activeChoice,#skinPlayers button.activeChoice{background:#648e32!important;}
-#names input{display:block;width:100%;margin:12px 0 20px;padding:12px;font:16px monospace;border:3px solid #59423b;background:#fff6ce;touch-action:auto;user-select:text;-webkit-user-select:text;}#names label{font-size:11px;}#settings .card{padding:14px;}#settings button{padding:9px 5px;margin:4px 0;}@media(max-height:700px){#settings h1{margin:5px;}#settings button{padding:6px 4px;font-size:10px;}}</style>
+#names input{display:block;width:100%;margin:12px 0 20px;padding:12px;font:16px monospace;border:3px solid #59423b;background:#fff6ce;touch-action:auto;user-select:text;-webkit-user-select:text;}#names label{font-size:11px;}#settings .card{padding:14px;}#settings button{padding:9px 5px;margin:4px 0;}@media(max-height:700px){#settings h1{margin:5px;}#settings button{padding:6px 4px;font-size:10px;}}#ready{justify-content:flex-start;padding-top:calc(env(safe-area-inset-top) + 17vh);pointer-events:none;}#readyTitle{margin:0;animation:readyPulse 1.2s ease-in-out infinite;}#playerTitle{margin-top:12px;color:#fff;text-shadow:2px 2px #59423b;}#readyText{margin-top:clamp(35px,15vh,130px);display:flex;flex-direction:column;align-items:center;gap:8px;animation:readyPulse 1.2s ease-in-out infinite;}#readyText svg{animation:demoFlap .8s ease-in-out infinite;} .tapArrow{font-size:30px;color:#59423b;}.tapLabel{background:#d92720;border:3px solid #fff;padding:8px;color:white;}.readyTop{position:absolute;top:calc(env(safe-area-inset-top) + 24px);font-size:32px;color:white;text-shadow:3px 3px #222;}@keyframes readyPulse{50%{opacity:.65;}}@keyframes demoFlap{50%{transform:translateY(-14px) rotate(-12deg);}}#pauseButton{position:fixed;top:calc(env(safe-area-inset-top) + 12px);left:12px;width:44px;height:44px;padding:0;margin:0;z-index:5;font-size:22px;}#hud{padding-left:48px;}#pauseMenu{background:#0003;}#pauseMenu .card{max-width:300px;}</style>
 </head>
 
 <body>
 
 <canvas id="game"></canvas>
 
-<div id="menu" class="screen"><h1>FLAPPY BIRD</h1><div class="card"><button class="green" onclick="showPlayers()">Play</button><button onclick="showSkins()">Skins</button><button class="gray" onclick="showSettings()">Settings</button><button class="gray" onclick="showLeaderboard()">Resultattavle</button></div><div class="version">VERSION 6.0</div></div><div id="players" class="screen hidden">
+<div id="menu" class="screen"><h1>FLAPPY BIRD</h1><div class="card"><button class="green" onclick="showPlayers()">Play</button><button onclick="showSkins()">Skins</button><button class="gray" onclick="showSettings()">Settings</button><button class="gray" onclick="showLeaderboard()">Resultattavle</button></div><div class="version">VERSION 6.1</div></div><div id="players" class="screen hidden">
 
   <h1>FLAPPY BIRD</h1>
 
@@ -204,20 +204,13 @@ small{font-size:9px;line-height:1.7;} h2{font-size:14px;line-height:1.6;}
 
   </div>
 
-  <div class="version">VERSION 6.0</div>
+  <div class="version">VERSION 6.1</div>
 
 </div>
 
-<div id="skins" class="screen hidden"><h1>SKINS</h1><div class="skinPreview"><svg viewBox="0 0 100 80" role="img" aria-label="Valgt fugl"><ellipse id="previewBody" cx="45" cy="40" rx="30" ry="22.5"/><ellipse id="previewWing" cx="30" cy="46" rx="15" ry="9"/><circle cx="60" cy="31" r="13.5" fill="white"/><circle cx="64.5" cy="31" r="5.25" fill="#20252A"/><ellipse cx="73.5" cy="46" rx="12" ry="6" fill="#FF8B31"/></svg><div id="selectedSkin"></div></div><div class="card"><div id="skinPlayers"></div><div id="skinChoices"></div><button class="gray" onclick="showMenu()">Tilbake</button></div></div><div id="settings" class="screen hidden"><h1>SETTINGS</h1><div class="card"><button id="musicToggle" onclick="toggleMusic()"></button><button id="soundToggle" onclick="toggleSound()"></button><button id="fps60" onclick="setFPS(60)">60 FPS</button><button id="fps120" onclick="setFPS(120)">120 FPS</button><button onclick="showNames()">Endre spillernavn</button><button id="updateButton" onclick="checkUpdate()">Søk etter oppdatering</button><small id="updateStatus" role="status" aria-live="polite"></small><small>Faktisk FPS avhenger av iOS og nettleseren.</small><button class="gray" onclick="showMenu()">Tilbake</button></div></div><div id="names" class="screen hidden"><h1>SPILLERNAVN</h1><div class="card"><label for="name1">Spiller 1</label><input id="name1" maxlength="18" autocomplete="off"><label for="name2">Spiller 2</label><input id="name2" maxlength="18" autocomplete="off"><button onclick="saveNames()">Lagre</button><button onclick="showSettings()">Tilbake</button></div></div><div id="ready" class="screen hidden">
-
-  <h1 id="playerTitle"></h1>
-
-  <div id="readyText">
-    Trykk for å fly
-  </div>
-
-</div>
-
+<div id="skins" class="screen hidden"><h1>SKINS</h1><div class="skinPreview"><svg viewBox="0 0 100 80" role="img" aria-label="Valgt fugl"><ellipse id="previewBody" cx="45" cy="40" rx="30" ry="22.5"/><ellipse id="previewWing" cx="30" cy="46" rx="15" ry="9"/><circle cx="60" cy="31" r="13.5" fill="white"/><circle cx="64.5" cy="31" r="5.25" fill="#20252A"/><ellipse cx="73.5" cy="46" rx="12" ry="6" fill="#FF8B31"/></svg><div id="selectedSkin"></div></div><div class="card"><div id="skinPlayers"></div><div id="skinChoices"></div><button class="gray" onclick="showMenu()">Tilbake</button></div></div><div id="settings" class="screen hidden"><h1>SETTINGS</h1><div class="card"><button id="musicToggle" onclick="toggleMusic()"></button><button id="soundToggle" onclick="toggleSound()"></button><button id="fps60" onclick="setFPS(60)">60 FPS</button><button id="fps120" onclick="setFPS(120)">120 FPS</button><button onclick="showNames()">Endre spillernavn</button><button id="updateButton" onclick="checkUpdate()">Søk etter oppdatering</button><small id="updateStatus" role="status" aria-live="polite"></small><small>Faktisk FPS avhenger av iOS og nettleseren.</small><button class="gray" onclick="showMenu()">Tilbake</button></div></div><div id="names" class="screen hidden"><h1>SPILLERNAVN</h1><div class="card"><label for="name1">Spiller 1</label><input id="name1" maxlength="18" autocomplete="off"><label for="name2">Spiller 2</label><input id="name2" maxlength="18" autocomplete="off"><button onclick="saveNames()">Lagre</button><button onclick="showSettings()">Tilbake</button></div></div><div id="ready" class="screen hidden"><div class="readyTop">0</div><h1 id="readyTitle">GET READY</h1><small id="playerTitle"></small><div id="readyText"><svg viewBox="0 0 100 80" width="76" height="60" aria-hidden="true"><g fill="#eee" stroke="#59423b" stroke-width="4"><path d="M15 25H25V15H65V22H80V48H65V60H25V50H15Z"/><path d="M50 15H70V35H50Z" fill="white"/><path d="M70 38H90V49H70Z" fill="#d96118"/><path d="M15 35H40V48H15Z"/></g><path d="M60 20V30" stroke="#333" stroke-width="5"/></svg><div class="tapArrow">↑</div><div class="tapLabel">TAP</div></div></div>
+<div id="pauseMenu" class="screen hidden"><h1>PAUSED</h1><div class="card"><button onclick="resumeGame()">Fortsett</button><button onclick="showMenu()">Hovedmeny</button></div></div>
+<button id="pauseButton" class="hidden" aria-label="Pause" onclick="pauseGame()">Ⅱ</button>
 <div id="hud" class="hidden">
 
   <div>
@@ -351,7 +344,7 @@ function showScreen(id) {
 
   const screens = [
     "menu", "players", "skins", "settings", "names",
-    "ready",
+    "ready", "pauseMenu",
     "gameover",
     "leaderboard",
     "hud"
@@ -366,9 +359,13 @@ function showScreen(id) {
 
   }
 
+  $("pauseButton").classList.toggle("hidden",id!=="hud"&&id!=="ready");
   dirty = true;
 }
 
+let pausedFrom="playing";
+function pauseGame(){if(state!=="playing"&&state!=="ready")return;pausedFrom=state;state="paused";showScreen("pauseMenu");}
+function resumeGame(){if(state!=="paused")return;state=pausedFrom;accumulator=0;lastTime=0;showScreen(state==="ready"?"ready":"hud");}
 
 function showMenu() {
 
@@ -396,7 +393,7 @@ function saveNames(){names.Ivan=$("name1").value.trim()||"Ivan";names.Alva=$("na
 let skinPlayer="Ivan";
 function makeButton(parent,label,action,color){const b=document.createElement("button");b.textContent=label;b.style.width="47%";b.style.margin="3px";b.style.padding="10px";b.style.background=color;b.classList.toggle("activeChoice",color==="#3478e5");b.onclick=action;parent.appendChild(b);}
 function showSkins(){state="skins";showScreen("skins");const chosen=prefs.skins[skinPlayer],colors=skins[chosen];$("previewBody").setAttribute("fill",colors[0]);$("previewWing").setAttribute("fill",colors[1]);$("selectedSkin").textContent=names[skinPlayer]+" – "+chosen;const p=$("skinPlayers"),s=$("skinChoices");p.replaceChildren();s.replaceChildren();for(const n of ["Ivan","Alva"])makeButton(p,names[n],()=>{skinPlayer=n;showSkins();},n===skinPlayer?"#3478e5":"#344b5b");for(const [n,c] of Object.entries(skins)){makeButton(s,n+(prefs.skins[skinPlayer]===n?" ✓":""),()=>{prefs.skins[skinPlayer]=n;savePrefs();showSkins();},"#344b5b");s.lastChild.style.border="4px solid "+c[0];}}
-async function checkUpdate(){const b=$("updateButton"),s=$("updateStatus");b.disabled=true;s.textContent="Sjekker etter oppdatering…";try{const u=new URL("./index.html",location.href);u.searchParams.set("_update",Date.now());const r=await fetch(u,{cache:"no-store"});if(!r.ok)throw Error("HTTP "+r.status);const html=await r.text();const v=html.match(/VERSION (\d+\.\d+)/)?.[1];if(!v)throw Error("Version missing");const current="6.0";const parts=v.split(".").map(Number),cur=current.split(".").map(Number);if(parts[0]>cur[0]||(parts[0]===cur[0]&&parts[1]>cur[1])){s.textContent="Ny versjon "+v+" funnet. Oppdaterer…";const next=new URL(location.href);next.searchParams.set("_update",Date.now());location.replace(next.href);}else{s.textContent="Du har nyeste publiserte versjon ("+current+").";}}catch(e){s.textContent="Kunne ikke sjekke. Prøv igjen senere.";}finally{b.disabled=false;}}
+async function checkUpdate(){const b=$("updateButton"),s=$("updateStatus");b.disabled=true;s.textContent="Sjekker etter oppdatering…";try{const u=new URL("./index.html",location.href);u.searchParams.set("_update",Date.now());const r=await fetch(u,{cache:"no-store"});if(!r.ok)throw Error("HTTP "+r.status);const html=await r.text();const v=html.match(/VERSION (\d+\.\d+)/)?.[1];if(!v)throw Error("Version missing");const current="6.1";const parts=v.split(".").map(Number),cur=current.split(".").map(Number);if(parts[0]>cur[0]||(parts[0]===cur[0]&&parts[1]>cur[1])){s.textContent="Ny versjon "+v+" funnet. Oppdaterer…";const next=new URL(location.href);next.searchParams.set("_update",Date.now());location.replace(next.href);}else{s.textContent="Du har nyeste publiserte versjon ("+current+").";}}catch(e){s.textContent="Kunne ikke sjekke. Prøv igjen senere.";}finally{b.disabled=false;}}
 function showSettings(){$("soundToggle").textContent="Hoppelyd: "+(prefs.sound?"PÅ":"AV");state="settings";showScreen("settings");$("musicToggle").textContent="Musikk: "+(prefs.music?"PÅ":"AV");for(const f of [60,120])$("fps"+f).classList.toggle("activeChoice",prefs.fps===f);}
 function setFPS(f){prefs.fps=f;savePrefs();showSettings();}
 let audio=null,musicTimer=null,musicStep=0;
@@ -885,7 +882,7 @@ function draw(time) {
   if (
     state === "ready" ||
     state === "playing" ||
-    state === "dead"
+    state === "dead" || state === "paused"
   ) {
 
     drawBird(time);
