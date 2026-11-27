@@ -153,7 +153,7 @@ small {
 
 <canvas id="game"></canvas>
 
-<div id="menu" class="screen"><h1>FLAPPY BIRD</h1><div class="card"><button class="green" onclick="showPlayers()">Play</button><button onclick="showSkins()">Skins</button><button class="gray" onclick="showSettings()">Settings</button><button class="gray" onclick="showLeaderboard()">Resultattavle</button></div><div class="version">VERSION 5.4</div></div><div id="players" class="screen hidden">
+<div id="menu" class="screen"><h1>FLAPPY BIRD</h1><div class="card"><button class="green" onclick="showPlayers()">Play</button><button onclick="showSkins()">Skins</button><button class="gray" onclick="showSettings()">Settings</button><button class="gray" onclick="showLeaderboard()">Resultattavle</button></div><div class="version">VERSION 5.5</div></div><div id="players" class="screen hidden">
 
   <h1>FLAPPY BIRD</h1>
 
@@ -175,11 +175,11 @@ small {
 
   </div>
 
-  <div class="version">VERSION 5.4</div>
+  <div class="version">VERSION 5.5</div>
 
 </div>
 
-<div id="skins" class="screen hidden"><h1>SKINS</h1><div class="card"><div id="skinPlayers"></div><div id="skinChoices"></div><button class="gray" onclick="showMenu()">Tilbake</button></div></div><div id="settings" class="screen hidden"><h1>SETTINGS</h1><div class="card"><button id="musicToggle" onclick="toggleMusic()"></button><button id="fps60" onclick="setFPS(60)">60 FPS</button><button id="fps120" onclick="setFPS(120)">120 FPS</button><small>Faktisk FPS avhenger av iOS og nettleseren.</small><button class="gray" onclick="showMenu()">Tilbake</button></div></div><div id="ready" class="screen hidden">
+<div id="skins" class="screen hidden"><h1>SKINS</h1><div class="card"><div id="skinPlayers"></div><div id="skinChoices"></div><button class="gray" onclick="showMenu()">Tilbake</button></div></div><div id="settings" class="screen hidden"><h1>SETTINGS</h1><div class="card"><button id="musicToggle" onclick="toggleMusic()"></button><button id="soundToggle" onclick="toggleSound()"></button><button id="fps60" onclick="setFPS(60)">60 FPS</button><button id="fps120" onclick="setFPS(120)">120 FPS</button><small>Faktisk FPS avhenger av iOS og nettleseren.</small><button class="gray" onclick="showMenu()">Tilbake</button></div></div><div id="ready" class="screen hidden">
 
   <h1 id="playerTitle"></h1>
 
@@ -377,16 +377,19 @@ function showMenu() {
 }
 
 const skins={Classic:["#FFD744","#FFF0B0"],Pink:["#F4A2D1","#FFD3EB"],Ocean:["#369BFF","#BCE8FF"],Emerald:["#36C98A","#B8F5CF"],Shadow:["#394150","#A0A9BB"],Ruby:["#E94B4B","#FFB5A8"]};
-let prefs={fps:120,music:false,skins:{Ivan:"Classic",Alva:"Pink"}};
-try{const p=JSON.parse(localStorage.getItem("flappySettingsV5"));if(p){prefs.fps=p.fps===60?60:120;prefs.music=p.music===true;for(const n of ["Ivan","Alva"])if(p.skins&&skins[p.skins[n]])prefs.skins[n]=p.skins[n];}}catch(e){}
+let prefs={fps:120,music:false,sound:true,skins:{Ivan:"Classic",Alva:"Pink"}};
+try{const p=JSON.parse(localStorage.getItem("flappySettingsV5"));if(p){prefs.fps=p.fps===60?60:120;prefs.music=p.music===true;prefs.sound=p.sound!==false;for(const n of ["Ivan","Alva"])if(p.skins&&skins[p.skins[n]])prefs.skins[n]=p.skins[n];}}catch(e){}
 function savePrefs(){try{localStorage.setItem("flappySettingsV5",JSON.stringify(prefs));}catch(e){}}
 function showPlayers(){state="players";for(const n of ["Ivan","Alva"])$(n.toLowerCase()+"Best").textContent="Rekord: "+profiles[n].best;showScreen("players");}
 let skinPlayer="Ivan";
 function makeButton(parent,label,action,color){const b=document.createElement("button");b.textContent=label;b.style.width="47%";b.style.margin="3px";b.style.padding="10px";b.style.background=color;b.onclick=action;parent.appendChild(b);}
 function showSkins(){state="skins";showScreen("skins");const p=$("skinPlayers"),s=$("skinChoices");p.replaceChildren();s.replaceChildren();for(const n of ["Ivan","Alva"])makeButton(p,n,()=>{skinPlayer=n;showSkins();},n===skinPlayer?"#3478e5":"#344b5b");for(const [n,c] of Object.entries(skins)){makeButton(s,n+(prefs.skins[skinPlayer]===n?" ✓":""),()=>{prefs.skins[skinPlayer]=n;savePrefs();showSkins();},"#344b5b");s.lastChild.style.border="4px solid "+c[0];}}
-function showSettings(){state="settings";showScreen("settings");$("musicToggle").textContent="Musikk: "+(prefs.music?"PÅ":"AV");for(const f of [60,120])$("fps"+f).style.background=prefs.fps===f?"#46a65c":"#344b5b";}
+function showSettings(){$("soundToggle").textContent="Hoppelyd: "+(prefs.sound?"PÅ":"AV");state="settings";showScreen("settings");$("musicToggle").textContent="Musikk: "+(prefs.music?"PÅ":"AV");for(const f of [60,120])$("fps"+f).style.background=prefs.fps===f?"#46a65c":"#344b5b";}
 function setFPS(f){prefs.fps=f;savePrefs();showSettings();}
 let audio=null,musicTimer=null,musicStep=0;
+let effectsAudio=null;
+function toggleSound(){prefs.sound=!prefs.sound;savePrefs();if(prefs.sound)flapSound();showSettings();}
+function flapSound(){if(!prefs.sound)return;try{const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;if(!effectsAudio)effectsAudio=new AC();const play=()=>{const t=effectsAudio.currentTime,o=effectsAudio.createOscillator(),g=effectsAudio.createGain();o.type="triangle";o.frequency.setValueAtTime(420,t);o.frequency.exponentialRampToValueAtTime(980,t+.065);o.frequency.exponentialRampToValueAtTime(680,t+.11);g.gain.setValueAtTime(.001,t);g.gain.exponentialRampToValueAtTime(.16,t+.008);g.gain.exponentialRampToValueAtTime(.001,t+.13);o.connect(g);g.connect(effectsAudio.destination);o.start(t);o.stop(t+.14);};if(effectsAudio.state==="running")play();else effectsAudio.resume().then(play).catch(()=>{});}catch(e){}}
 const melody=[60,64,67,72,67,64,62,65,69,74,69,65,59,62,67,71];
 function stopMusic(){if(musicTimer!==null){clearInterval(musicTimer);musicTimer=null;}if(audio&&audio.state==="running")audio.suspend().catch(()=>{});}
 function startMusic(){if(!prefs.music||document.hidden||musicTimer!==null)return;try{const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;if(!audio)audio=new AC();audio.resume().catch(()=>{});const note=()=>{if(audio.state!=="running")return;const t=audio.currentTime,o=audio.createOscillator(),g=audio.createGain();o.type="triangle";o.frequency.value=440*Math.pow(2,(melody[musicStep++%melody.length]-69)/12);g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(.045,t+.015);g.gain.exponentialRampToValueAtTime(.001,t+.23);o.connect(g);g.connect(audio.destination);o.start(t);o.stop(t+.25);};note();musicTimer=setInterval(note,300);}catch(e){}}
@@ -433,6 +436,7 @@ function startGame() {
   showScreen("hud");
 
   bird.velocity = JUMP;
+  flapSound();
 
   createPipe();
 }
@@ -452,6 +456,7 @@ document.addEventListener("pointerdown", e => {
     e.preventDefault();
 
     bird.velocity = JUMP;
+  flapSound();
 
   }
 
@@ -906,7 +911,7 @@ function loop(time) {
 
   const interval=1000/prefs.fps;
   const elapsed=lastDraw===null?interval:time-lastDraw;
-  const rendered=dirty||((state==="playing"||state==="ready")&&elapsed>=interval-0.7);
+  const rendered=dirty||((state==="playing"||state==="ready")&&(prefs.fps===120||elapsed>=interval-0.7));
   if(rendered){draw(time);dirty=false;lastDraw=lastDraw===null||elapsed>interval*3?time:time-Math.max(0,elapsed-interval);}
 
   if (state === "playing") {
