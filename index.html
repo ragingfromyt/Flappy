@@ -177,14 +177,14 @@ small{font-size:9px;line-height:1.7;} h2{font-size:14px;line-height:1.6;}
 #settings button.activeChoice,#skinPlayers button.activeChoice{background:#648e32!important;}
 #names input{display:block;width:100%;margin:12px 0 20px;padding:12px;font:16px monospace;border:3px solid #59423b;background:#fff6ce;touch-action:auto;user-select:text;-webkit-user-select:text;}#names label{font-size:11px;}#settings .card{padding:14px;}#settings button{padding:9px 5px;margin:4px 0;}@media(max-height:700px){#settings h1{margin:5px;}#settings button{padding:6px 4px;font-size:10px;}}#ready{justify-content:flex-start;padding-top:calc(env(safe-area-inset-top) + 17vh);pointer-events:none;}#readyTitle{margin:0;animation:readyPulse 1.2s ease-in-out infinite;}#playerTitle{margin-top:12px;color:#fff;text-shadow:2px 2px #59423b;}#readyText{margin-top:clamp(35px,15vh,130px);display:flex;flex-direction:column;align-items:center;gap:8px;animation:readyPulse 1.2s ease-in-out infinite;}#readyText svg{animation:demoFlap .8s ease-in-out infinite;} .tapArrow{font-size:30px;color:#59423b;}.tapLabel{background:#d92720;border:3px solid #fff;padding:8px;color:white;}.readyTop{position:absolute;top:calc(env(safe-area-inset-top) + 24px);font-size:32px;color:white;text-shadow:3px 3px #222;}@keyframes readyPulse{50%{opacity:.65;}}@keyframes demoFlap{50%{transform:translateY(-14px) rotate(-12deg);}}#pauseButton{position:fixed;top:calc(env(safe-area-inset-top) + 12px);left:12px;width:44px;height:44px;padding:0;margin:0;z-index:5;font-size:22px;}#hud{padding-left:48px;}#pauseMenu{background:#0003;}#pauseMenu .card{max-width:300px;}/* Keep moving scenery away from the system status-bar backdrop. */
 body::after{content:"";position:fixed;top:0;left:0;right:0;height:env(safe-area-inset-top,0px);background:#80c5ce;pointer-events:none;z-index:20;}
-#menu{padding-top:calc(24px + env(safe-area-inset-top) + 5vh);}#settings{overflow-y:auto;touch-action:pan-y;}#settings .card{flex-shrink:0;}#settings h1{margin:8px 0;}#settings button{padding:7px 5px;margin:3px 0;}#settings .optionRow{display:flex;gap:6px;}body.night::after{background:#192b49;}canvas.pixel{image-rendering:pixelated;}@media(max-height:700px){#settings{justify-content:flex-start;}}#coinHud{text-align:right;color:#ffda58;margin-top:9px;}#resultCoins{color:#ffda58;text-shadow:2px 2px #49362e;font-size:12px;margin:8px 0;}html,body{background:linear-gradient(to bottom,var(--sky,#80c5ce) 0%,var(--sky,#80c5ce) 78%,#ded994 78%,#ded994 100%);min-height:100dvh;}canvas{height:100dvh;width:100vw;}body::after{background:var(--sky,#80c5ce)!important;}body::before{content:"";position:fixed;bottom:0;left:0;right:0;height:env(safe-area-inset-bottom,0px);background:#ded994;pointer-events:none;z-index:20;}html,body{height:100%;min-height:0;background:#ded994;overscroll-behavior:none;}canvas{position:fixed;inset:0;width:100%;height:100%;}body::before,body::after{display:none!important;}#hud{top:calc(max(env(safe-area-inset-top), 44px) + 34px);}#pauseButton{top:calc(max(env(safe-area-inset-top), 44px) + 26px);}.readyTop{top:calc(max(env(safe-area-inset-top), 44px) + 38px);}html,body{background:var(--sky,#80c5ce)!important;}#hud{top:calc(max(env(safe-area-inset-top), 44px) + 49px)!important;}#pauseButton{top:calc(max(env(safe-area-inset-top), 44px) + 41px)!important;}.readyTop{top:calc(max(env(safe-area-inset-top), 44px) + 53px)!important;}</style>
+#menu{padding-top:calc(24px + env(safe-area-inset-top) + 5vh);}#settings{overflow-y:auto;touch-action:pan-y;}#settings .card{flex-shrink:0;}#settings h1{margin:8px 0;}#settings button{padding:7px 5px;margin:3px 0;}#settings .optionRow{display:flex;gap:6px;}body.night::after{background:#192b49;}canvas.pixel{image-rendering:pixelated;}@media(max-height:700px){#settings{justify-content:flex-start;}}#coinHud{text-align:right;color:#ffda58;margin-top:9px;}#resultCoins{color:#ffda58;text-shadow:2px 2px #49362e;font-size:12px;margin:8px 0;}html,body{background:linear-gradient(to bottom,var(--sky,#80c5ce) 0%,var(--sky,#80c5ce) 78%,#ded994 78%,#ded994 100%);min-height:100dvh;}canvas{height:100dvh;width:100vw;}body::after{background:var(--sky,#80c5ce)!important;}body::before{content:"";position:fixed;bottom:0;left:0;right:0;height:env(safe-area-inset-bottom,0px);background:#ded994;pointer-events:none;z-index:20;}html,body{height:100%;min-height:0;background:#ded994;overscroll-behavior:none;}canvas{position:fixed;inset:0;width:100%;height:100%;}body::before,body::after{display:none!important;}#hud{top:calc(max(env(safe-area-inset-top), 44px) + 34px);}#pauseButton{top:calc(max(env(safe-area-inset-top), 44px) + 26px);}.readyTop{top:calc(max(env(safe-area-inset-top), 44px) + 38px);}html,body{background:var(--sky,#80c5ce)!important;}#hud{top:calc(max(env(safe-area-inset-top), 44px) + 49px)!important;}#pauseButton{top:calc(max(env(safe-area-inset-top), 44px) + 41px)!important;}.readyTop{top:calc(max(env(safe-area-inset-top), 44px) + 53px)!important;}#pauseButton{width:48px;height:48px;display:grid;place-items:center;}#pauseButton::before,#pauseButton::after{content:"";position:absolute;top:13px;bottom:13px;width:6px;background:#fff8df;box-shadow:2px 2px #9c3c14;}#pauseButton::before{left:14px;}#pauseButton::after{right:14px;}#pauseButton{font-size:0;}#hud{padding-left:56px;}</style>
 </head>
 
 <body>
 
 <canvas id="game"></canvas>
 
-<div id="menu" class="screen"><h1>FLAPPY BIRD</h1><div class="card"><button class="green" onclick="showPlayers()">Play</button><button onclick="showSkins()">Skins</button><button class="gray" onclick="showSettings()">Settings</button><button class="gray" onclick="showLeaderboard()">Resultattavle</button></div><div class="version">VERSION 6.8</div></div><div id="players" class="screen hidden">
+<div id="menu" class="screen"><h1>FLAPPY BIRD</h1><div class="card"><button class="green" onclick="showPlayers()">Play</button><button onclick="showSkins()">Skins</button><button class="gray" onclick="showSettings()">Settings</button><button class="gray" onclick="showLeaderboard()">Resultattavle</button></div><div class="version">VERSION 6.9</div></div><div id="players" class="screen hidden">
 
   <h1>FLAPPY BIRD</h1>
 
@@ -206,7 +206,7 @@ body::after{content:"";position:fixed;top:0;left:0;right:0;height:env(safe-area-
 
   </div>
 
-  <div class="version">VERSION 6.8</div>
+  <div class="version">VERSION 6.9</div>
 
 </div>
 
@@ -280,7 +280,7 @@ const JUMP = -390;
 const PIPE_WIDTH = 65;
 
 let profiles = {
-  Ivan: { best: 0, games: 0 },
+  Ivan: { best: 0, games: 0, coins: 0 },
   Alva: { best: 0, games: 0 }
 };
 
@@ -291,7 +291,7 @@ try {
   );
 
   if (saved && saved.Ivan && saved.Alva) {
-    for(const n of ["Ivan","Alva"]){profiles[n]={best:Math.max(0,Math.floor(Number(saved[n].best)||0)),games:Math.max(0,Math.floor(Number(saved[n].games)||0))};}
+    for(const n of ["Ivan","Alva"]){profiles[n]={best:Math.max(0,Math.floor(Number(saved[n].best)||0)),games:Math.max(0,Math.floor(Number(saved[n].games)||0)),coins:Math.max(0,Math.floor(Number(saved[n].coins)||0))};}
   }
 
 } catch(e) {}
@@ -396,7 +396,7 @@ function saveNames(){names.Ivan=$("name1").value.trim()||"Ivan";names.Alva=$("na
 let skinPlayer="Ivan";
 function makeButton(parent,label,action,color){const b=document.createElement("button");b.textContent=label;b.style.width="47%";b.style.margin="3px";b.style.padding="10px";b.style.background=color;b.classList.toggle("activeChoice",color==="#3478e5");b.onclick=action;parent.appendChild(b);}
 function showSkins(){state="skins";showScreen("skins");const chosen=prefs.skins[skinPlayer],colors=skins[chosen];$("previewBody").setAttribute("fill",colors[0]);$("previewWing").setAttribute("fill",colors[1]);$("selectedSkin").textContent=names[skinPlayer]+" – "+chosen;const p=$("skinPlayers"),s=$("skinChoices");p.replaceChildren();s.replaceChildren();for(const n of ["Ivan","Alva"])makeButton(p,names[n],()=>{skinPlayer=n;showSkins();},n===skinPlayer?"#3478e5":"#344b5b");for(const [n,c] of Object.entries(skins)){makeButton(s,n+(prefs.skins[skinPlayer]===n?" ✓":""),()=>{prefs.skins[skinPlayer]=n;savePrefs();showSkins();},"#344b5b");s.lastChild.style.border="4px solid "+c[0];}}
-async function checkUpdate(){const b=$("updateButton"),s=$("updateStatus");b.disabled=true;s.textContent="Sjekker etter oppdatering…";try{const u=new URL("./index.html",location.href);u.searchParams.set("_update",Date.now());const r=await fetch(u,{cache:"no-store"});if(!r.ok)throw Error("HTTP "+r.status);const html=await r.text();const v=html.match(/VERSION (\d+\.\d+)/)?.[1];if(!v)throw Error("Version missing");const current="6.8";const parts=v.split(".").map(Number),cur=current.split(".").map(Number);if(parts[0]>cur[0]||(parts[0]===cur[0]&&parts[1]>cur[1])){s.textContent="Ny versjon "+v+" funnet. Oppdaterer…";const next=new URL(location.href);next.searchParams.set("_update",Date.now());location.replace(next.href);}else{s.textContent="Du har nyeste publiserte versjon ("+current+").";}}catch(e){s.textContent="Kunne ikke sjekke. Prøv igjen senere.";}finally{b.disabled=false;}}
+async function checkUpdate(){const b=$("updateButton"),s=$("updateStatus");b.disabled=true;s.textContent="Sjekker etter oppdatering…";try{const u=new URL("./index.html",location.href);u.searchParams.set("_update",Date.now());const r=await fetch(u,{cache:"no-store"});if(!r.ok)throw Error("HTTP "+r.status);const html=await r.text();const v=html.match(/VERSION (\d+\.\d+)/)?.[1];if(!v)throw Error("Version missing");const current="6.9";const parts=v.split(".").map(Number),cur=current.split(".").map(Number);if(parts[0]>cur[0]||(parts[0]===cur[0]&&parts[1]>cur[1])){s.textContent="Ny versjon "+v+" funnet. Oppdaterer…";const next=new URL(location.href);next.searchParams.set("_update",Date.now());location.replace(next.href);}else{s.textContent="Du har nyeste publiserte versjon ("+current+").";}}catch(e){s.textContent="Kunne ikke sjekke. Prøv igjen senere.";}finally{b.disabled=false;}}
 function setVisual(k,v){prefs[k]=v;savePrefs();applyVisual();showSettings();}
 function applyVisual(){const sky=prefs.theme==="night"?"#192b49":"#80c5ce";document.documentElement.style.setProperty("--sky",sky);document.documentElement.style.backgroundColor=sky;document.body.style.backgroundColor=sky;document.querySelector('meta[name="theme-color"]').content=sky;document.body.classList.toggle("night",prefs.theme==="night");canvas.classList.toggle("pixel",prefs.graphics==="pixel");resize(true);cacheBackground();dirty=true;}
 function showSettings(){for(const k of ["day","night","smooth","pixel"])$(k).classList.toggle("activeChoice",k===prefs.theme||k===prefs.graphics);$("soundToggle").textContent="Hoppelyd: "+(prefs.sound?"PÅ":"AV");state="settings";showScreen("settings");$("musicToggle").textContent="Musikk: "+(prefs.music?"PÅ":"AV");for(const f of [60,120])$("fps"+f).classList.toggle("activeChoice",prefs.fps===f);}
@@ -448,6 +448,7 @@ function prepareGame() {
 function startGame() {
 
   state = "playing";
+  profiles[player].games++;saveProfiles();
 
   showScreen("hud");
 
@@ -530,7 +531,7 @@ function gameOver() {
 
   const profile = profiles[player];
 
-  profile.games++;
+
 
   const newRecord = score > roundBest;
 
@@ -568,7 +569,7 @@ function showLeaderboard() {
       (index + 1) + ". " + names[name].replace(/[&<>"\x27]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","\x27":"&#39;"}[c])) +
       '<small>' +
       profile.games +
-      ' spilte runder</small></div>' +
+      ' spilte runder · ★ '+(profile.coins||0)+'</small></div>' +
       '<strong>' +
       profile.best +
       '</strong></div>'
@@ -625,7 +626,7 @@ function update() {
 
     }
 
-    if(!p.coinTaken && Math.hypot(bird.x-(p.x+PIPE_WIDTH/2),bird.y-(p.top+p.gap/2)) < bird.radius+12){p.coinTaken=true;roundCoins++;$("coinHud").textContent="★ "+roundCoins;}
+    if(!p.coinTaken && Math.hypot(bird.x-(p.x+PIPE_WIDTH/2),bird.y-(p.top+p.gap/2)) < bird.radius+12){p.coinTaken=true;roundCoins++;profiles[player].coins=(profiles[player].coins||0)+1;saveProfiles();$("coinHud").textContent="★ "+roundCoins;}
     if (
       !p.passed &&
       p.x + PIPE_WIDTH + 4 <
@@ -890,9 +891,7 @@ function draw(time) {
   drawCoins();
 
   drawGround();
-  // Solid sky behind the iOS status bar; no moving pipes or clouds in this area.
-  const statusHeight=64;
-  rectangle(0,0,W,statusHeight,prefs.theme==="night"?"#192b49":"#80c5ce");
+
 
   if (
     state === "ready" ||
@@ -989,6 +988,8 @@ if (window.visualViewport) {
 
 }
 
+window.addEventListener("pagehide",()=>{saveProfiles();savePrefs();});
+document.addEventListener("visibilitychange",()=>{if(document.hidden){saveProfiles();savePrefs();}});
 applyVisual();
 
 showMenu();
